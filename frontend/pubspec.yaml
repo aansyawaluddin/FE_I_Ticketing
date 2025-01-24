@@ -62,6 +62,7 @@ flutter:
     - assets/icons/lapor.png
     - assets/icons/notifikasi.png
     - assets/icons/account.png
+    - assets/icons/detail_ticket.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
