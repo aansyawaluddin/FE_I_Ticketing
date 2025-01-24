@@ -5,6 +5,33 @@ class DetailTicket extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Detail Ticket',
+            style: TextStyle(
+              fontFamily: 'Montserrat',
+              color: Colors.black,
+              fontSize: 20,
+            ),
+          ),
+          backgroundColor: const Color(0xFFEAEAEA),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () {
+              Navigator.pop(context); 
+            },
+          ),
+        ),
+        body: const Center(
+          child: Text(
+            'Detail Ticket Content',
+            style: TextStyle(fontSize: 16),
+          ),
+        ),
+      ),
+    );
   }
 }
