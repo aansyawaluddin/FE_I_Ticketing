@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:frontend/dashboard.dart';
 import 'package:frontend/detail_ticket.dart';
 
@@ -33,10 +34,9 @@ class _WorkingState extends State<Working> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text(
+        title: Text(
           "Working List",
-          style: TextStyle(
-            fontFamily: 'Montserrat',
+          style: GoogleFonts.montserrat(
             color: Colors.black,
             fontSize: 20,
           ),
@@ -140,8 +140,7 @@ class _WorkingState extends State<Working> {
       children: [
         Text(
           title1,
-          style: const TextStyle(
-            fontFamily: 'Montserrat',
+          style: GoogleFonts.montserrat(
             fontWeight: FontWeight.bold,
             color: Colors.black,
             fontSize: 14,
@@ -149,8 +148,7 @@ class _WorkingState extends State<Working> {
         ),
         Text(
           title2,
-          style: const TextStyle(
-            fontFamily: 'Montserrat',
+          style: GoogleFonts.montserrat(
             fontWeight: FontWeight.bold,
             color: Colors.black,
             fontSize: 14,
@@ -195,8 +193,7 @@ class _WorkingState extends State<Working> {
             padding: const EdgeInsets.symmetric(vertical: 6.0),
             child: Text(
               name,
-              style: const TextStyle(
-                fontFamily: 'Montserrat',
+              style: GoogleFonts.montserrat(
                 color: Colors.black,
                 fontSize: 14,
               ),
@@ -209,8 +206,7 @@ class _WorkingState extends State<Working> {
             padding: const EdgeInsets.symmetric(vertical: 6.0),
             child: Text(
               department,
-              style: const TextStyle(
-                fontFamily: 'Montserrat',
+              style: GoogleFonts.montserrat(
                 color: Colors.black,
                 fontSize: 14,
               ),
@@ -221,15 +217,15 @@ class _WorkingState extends State<Working> {
           Center(
             child: Container(
               width: 65,
-              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
               decoration: BoxDecoration(
                 color: backgroundColor,
                 borderRadius: BorderRadius.circular(4.0),
               ),
               child: Text(
                 status,
-                style: TextStyle(
-                  fontFamily: 'Montserrat',
+                style: GoogleFonts.montserrat(
                   color: textColor,
                   fontSize: 14,
                 ),
@@ -243,8 +239,7 @@ class _WorkingState extends State<Working> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailTicket(
-                  ),
+                  builder: (context) => DetailTicket(),
                 ),
               );
             },

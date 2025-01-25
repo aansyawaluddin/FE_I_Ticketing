@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:frontend/working.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        textTheme: GoogleFonts.montserratTextTheme(),
+      ),
       home: DashboardScreen(),
     );
   }
@@ -37,18 +39,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     }
   }
 
-  Widget _buildIcon(String assetPath, int index) {
-    Color color = _selectedIndex == index ? Colors.blue : Colors.black;
-    return ColorFiltered(
-      colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-      child: Image.asset(
-        assetPath,
-        width: 24.0,
-        height: 24.0,
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -60,10 +50,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
         title: Row(
           children: [
             const SizedBox(width: 10),
-            const Text(
+            Text(
               "Dashboard",
-              style: TextStyle(
-                fontFamily: 'Montserrat',
+              style: GoogleFonts.montserrat(
                 color: Colors.black,
                 fontSize: 20,
               ),
@@ -93,12 +82,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 _buildInfoCard('Over Due', 25, screenWidth),
               ],
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 8.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
               child: Text(
                 'Daily Grafik',
-                style: TextStyle(
-                  fontFamily: 'Montserrat',
+                style: GoogleFonts.montserrat(
                   fontSize: 16,
                   color: Colors.black,
                 ),
@@ -197,17 +185,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ),
             SizedBox(height: screenHeight * 0.02),
-            const Padding(
-              padding: EdgeInsets.only(left: 8.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
               child: Text(
                 'Penunjukan Tim',
-                style: TextStyle(
-                  fontFamily: 'Montserrat',
+                style: GoogleFonts.montserrat(
                   fontSize: 16,
                   color: Colors.black,
                 ),
               ),
             ),
+            SizedBox(height: screenHeight * 0.03),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -230,8 +218,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
         onTap: _onItemTapped,
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.black,
-        selectedLabelStyle: const TextStyle(color: Colors.black),
-        unselectedLabelStyle: const TextStyle(color: Colors.black),
+        selectedLabelStyle: GoogleFonts.montserrat(color: Colors.black),
+        unselectedLabelStyle: GoogleFonts.montserrat(color: Colors.black),
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
@@ -293,6 +281,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           borderRadius: BorderRadius.circular(5),
         ),
         width: screenWidth * 0.4,
+        height: screenWidth * 0.15,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -303,15 +292,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
-                      fontFamily: 'Montserrat',
+                    style: GoogleFonts.montserrat(
                       fontSize: 12,
-                      color: Color(0XFFA6A6A6),
+                      color: const Color(0XFFA6A6A6),
                     ),
                   ),
                   Text(
                     '$count',
-                    style: const TextStyle(
+                    style: GoogleFonts.montserrat(
                       fontSize: 20,
                       color: Colors.black,
                     ),
@@ -321,6 +309,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildIcon(String assetPath, int index) {
+    Color color = _selectedIndex == index ? Colors.blue : Colors.black;
+    return ColorFiltered(
+      colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+      child: Image.asset(
+        assetPath,
+        width: 24.0,
+        height: 24.0,
       ),
     );
   }
@@ -334,7 +334,7 @@ class LinePainter extends CustomPainter {
       ..strokeWidth = 2
       ..style = PaintingStyle.stroke;
 
-    // Garis vertikal 
+    // Garis vertikal
     canvas.drawLine(
       Offset(size.width * 0.1 - 35, 0),
       Offset(size.width * 0.1 - 35, size.height),

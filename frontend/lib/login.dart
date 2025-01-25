@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/dashboard.dart'; 
+import 'package:google_fonts/google_fonts.dart'; // Import Google Fonts
+import 'package:frontend/dashboard.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, 
+      debugShowCheckedModeBanner: false,
       home: LoginPage(),
     );
   }
@@ -20,7 +21,10 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Halaman Login'),
+        title: Text(
+          'Halaman Login',
+          style: GoogleFonts.montserrat(),
+        ),
       ),
       body: Center(
         child: ElevatedButton(
@@ -30,7 +34,10 @@ class LoginPage extends StatelessWidget {
               MaterialPageRoute(builder: (context) => DashboardScreen()),
             );
           },
-          child: Text('Login'),
+          child: Text(
+            'Login',
+            style: GoogleFonts.montserrat(),
+          ),
         ),
       ),
     );
