@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:frontend/working.dart';
+import 'package:frontend/spv/working.dart';
+import 'package:frontend/spv/notification.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -32,6 +33,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const Working()),
+      );
+    } else if (index == 3) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const NotificationPage()),
       );
     } else {
       setState(() {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:frontend/dashboard.dart';
-import 'package:frontend/detail_ticket.dart';
+import 'package:frontend/spv/dashboard.dart';
+import 'package:frontend/spv/detail_ticket.dart';
+import 'package:frontend/spv/notification.dart';
 
 class Working extends StatefulWidget {
   const Working({super.key});
@@ -23,6 +24,15 @@ class _WorkingState extends State<Working> {
         context,
         MaterialPageRoute(builder: (context) => const DashboardScreen()),
       );
+    } else if (index == 3) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const NotificationPage()),
+      );
+    } else {
+      setState(() {
+        _selectedIndex = index;
+      });
     }
   }
 
