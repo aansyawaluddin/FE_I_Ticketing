@@ -45,40 +45,44 @@ class _WorkingState extends State<Working> {
       ),
       backgroundColor: const Color(0xFFEAEAEA),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: DataTable(
-            dataRowHeight: 80.0,
-            columnSpacing: 20.0,
-            headingRowHeight: 60.0,
-            columns: [
-              DataColumn(
-                label: _buildColumnTitle('Nama', 'Tim EOS'),
-                numeric: false,
-                tooltip: 'Nama\nTim EOS',
+          child: Column(
+            children: [
+              DataTable(
+                dataRowHeight: 100.0,
+                columnSpacing: 20.0,
+                headingRowHeight: 60.0,
+                columns: [
+                  DataColumn(
+                    label: _buildColumnTitle('Nama', 'Tim EOS'),
+                    numeric: false,
+                    tooltip: 'Nama\nTim EOS',
+                  ),
+                  DataColumn(
+                    label: _buildColumnTitle('Dinas', 'Pelapor'),
+                    numeric: false,
+                    tooltip: "Dinas Pelapor",
+                  ),
+                  DataColumn(
+                    label: _buildColumnTitle('Progres', 'Ticket'),
+                    numeric: false,
+                    tooltip: "Progres Ticket",
+                  ),
+                  DataColumn(
+                    label: _buildColumnTitle('Ticket', 'Detail'),
+                    numeric: false,
+                    tooltip: "Ticket Detail",
+                  ),
+                ],
+                rows: [
+                  createRow('Muh. Rezky', 'Dispora', 'Belum', context),
+                  createRow('Akbar', 'Diskominfo', 'Selesai', context),
+                  createRow('Reza Maulana', 'Dispora', 'Proses', context),
+                  createRow('Nasaruddin', 'Dukcapil', 'Proses', context),
+                ],
               ),
-              DataColumn(
-                label: _buildColumnTitle('Dinas', 'Pelapor'),
-                numeric: false,
-                tooltip: "Dinas Pelapor",
-              ),
-              DataColumn(
-                label: _buildColumnTitle('Progres', 'Ticket'),
-                numeric: false,
-                tooltip: "Progres Ticket",
-              ),
-              DataColumn(
-                label: _buildColumnTitle('Ticket', 'Detail'),
-                numeric: false,
-                tooltip: "Ticket Detail",
-              ),
-            ],
-            rows: [
-              createRow('Muh. Rezky', 'Dispora', 'Belum', context),
-              createRow('Akbar', 'Diskominfo', 'Selesai', context),
-              createRow('Reza Maulana', 'Dispora', 'Proses', context),
-              createRow('Nasaruddin', 'Dukcapil', 'Proses', context),
             ],
           ),
         ),
@@ -229,6 +233,7 @@ class _WorkingState extends State<Working> {
                   color: textColor,
                   fontSize: 14,
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
           ),
