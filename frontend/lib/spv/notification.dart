@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:frontend/spv/working.dart';
 import 'package:frontend/spv/dashboard.dart';
+import 'package:frontend/spv/account.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});
@@ -27,6 +28,11 @@ class _NotificationState extends State<NotificationPage> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const Working()),
+      );
+    } else if (index == 4) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const AccountPage()),
       );
     } else {
       setState(() {

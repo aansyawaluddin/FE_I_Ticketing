@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:frontend/spv/dashboard.dart';
 import 'package:frontend/spv/detail_ticket.dart';
 import 'package:frontend/spv/notification.dart';
+import 'package:frontend/spv/account.dart';
 
 class Working extends StatefulWidget {
   const Working({super.key});
@@ -28,6 +29,11 @@ class _WorkingState extends State<Working> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const NotificationPage()),
+      );
+    } else if (index == 4) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const AccountPage()),
       );
     } else {
       setState(() {

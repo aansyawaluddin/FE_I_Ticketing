@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:frontend/spv/working.dart';
 import 'package:frontend/spv/notification.dart';
+import 'package:frontend/spv/account.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -38,6 +39,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const NotificationPage()),
+      );
+    } else if (index == 4) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const AccountPage()),
       );
     } else {
       setState(() {
@@ -343,8 +349,8 @@ class LinePainter extends CustomPainter {
 
     // Garis vertikal
     canvas.drawLine(
-      Offset(size.width * 0.1 - 35, 0),
-      Offset(size.width * 0.1 - 35, size.height),
+      Offset(size.width * 0.1 - 37, 0),
+      Offset(size.width * 0.1 - 37, size.height),
       paint,
     );
 
