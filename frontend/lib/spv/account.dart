@@ -4,6 +4,7 @@ import 'package:frontend/login.dart';
 import 'package:frontend/spv/dashboard.dart';
 import 'package:frontend/spv/working.dart';
 import 'package:frontend/spv/notification.dart';
+import 'package:frontend/spv/button_nav.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -56,7 +57,7 @@ class _AccountPageState extends State<AccountPage> {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
-          'Profile',
+          'Profil',
           style: GoogleFonts.montserrat(
             color: Colors.black,
             fontSize: 20,
@@ -109,7 +110,7 @@ class _AccountPageState extends State<AccountPage> {
               ),
             ),
             const Divider(height: 30, thickness: 1, indent: 20, endIndent: 20),
-            _buildEditableCard('Name', name, (newValue) {
+            _buildEditableCard('Nama', name, (newValue) {
               setState(() {
                 name = newValue;
               });
@@ -120,7 +121,7 @@ class _AccountPageState extends State<AccountPage> {
               });
             }),
             _buildEditableCard('SKPD', skpd, null, isEditable: false),
-            _buildEditableCard('Phone', phone, (newValue) {
+            _buildEditableCard('Telepon', phone, (newValue) {
               setState(() {
                 phone = newValue;
               });
@@ -149,7 +150,7 @@ class _AccountPageState extends State<AccountPage> {
                 minimumSize: Size(screenWidth - 40, 50),
               ),
               child: Text(
-                'Logout',
+                'Keluar',
                 style: GoogleFonts.montserrat(
                   color: Colors.white,
                   fontSize: 16,
@@ -160,51 +161,9 @@ class _AccountPageState extends State<AccountPage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.black,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: _buildIcon('assets/icons/home.png', 0),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: _buildIcon('assets/icons/working.png', 1),
-            label: 'Working List',
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.only(bottom: 0),
-              child: Container(
-                width: screenWidth * 0.13,
-                height: screenWidth * 0.13,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF4282C2),
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Image.asset(
-                    'assets/icons/lapor.png',
-                    width: screenWidth * 0.05,
-                    height: screenHeight * 0.03,
-                  ),
-                ),
-              ),
-            ),
-            label: 'Lapor',
-          ),
-          BottomNavigationBarItem(
-            icon: _buildIcon('assets/icons/notifikasi.png', 3),
-            label: 'Notifikasi',
-          ),
-          BottomNavigationBarItem(
-            icon: _buildIcon('assets/icons/account.png', 4),
-            label: 'Account',
-          ),
-        ],
+      bottomNavigationBar: BottomNav(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }
@@ -254,17 +213,17 @@ class _AccountPageState extends State<AccountPage> {
           title: Text('Edit $label'),
           content: TextField(
             controller: controller,
-            decoration: InputDecoration(hintText: 'Enter new $label'),
+            decoration: InputDecoration(hintText: 'Masukkan $label baru'),
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Cancel'),
+              child: Text('Batal'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text('Save'),
+              child: Text('Simpan'),
               onPressed: () {
                 if (onChanged != null) {
                   onChanged(controller.text);
@@ -275,18 +234,6 @@ class _AccountPageState extends State<AccountPage> {
           ],
         );
       },
-    );
-  }
-
-  Widget _buildIcon(String assetPath, int index) {
-    Color color = _selectedIndex == index ? Colors.blue : Colors.black;
-    return ColorFiltered(
-      colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-      child: Image.asset(
-        assetPath,
-        width: 24.0,
-        height: 24.0,
-      ),
     );
   }
 }

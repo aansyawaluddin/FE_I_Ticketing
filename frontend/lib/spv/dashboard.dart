@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:frontend/spv/working.dart';
 import 'package:frontend/spv/notification.dart';
 import 'package:frontend/spv/account.dart';
+import 'package:frontend/spv/button_nav.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -226,53 +227,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.black,
-        selectedLabelStyle: GoogleFonts.montserrat(color: Colors.black),
-        unselectedLabelStyle: GoogleFonts.montserrat(color: Colors.black),
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: _buildIcon('assets/icons/home.png', 0),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: _buildIcon('assets/icons/working.png', 1),
-            label: 'Working List',
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.only(bottom: 0),
-              child: Container(
-                width: screenWidth * 0.13,
-                height: screenWidth * 0.13,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF4282C2),
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Image.asset(
-                    'assets/icons/lapor.png',
-                    width: screenWidth * 0.05,
-                    height: screenHeight * 0.03,
-                  ),
-                ),
-              ),
-            ),
-            label: 'Lapor',
-          ),
-          BottomNavigationBarItem(
-            icon: _buildIcon('assets/icons/notifikasi.png', 3),
-            label: 'Notifikasi',
-          ),
-          BottomNavigationBarItem(
-            icon: _buildIcon('assets/icons/account.png', 4),
-            label: 'Account',
-          ),
-        ],
+      bottomNavigationBar: BottomNav(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }
@@ -322,18 +279,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildIcon(String assetPath, int index) {
-    Color color = _selectedIndex == index ? Colors.blue : Colors.black;
-    return ColorFiltered(
-      colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-      child: Image.asset(
-        assetPath,
-        width: 24.0,
-        height: 24.0,
       ),
     );
   }

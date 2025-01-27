@@ -4,6 +4,7 @@ import 'package:frontend/spv/dashboard.dart';
 import 'package:frontend/spv/detail_ticket.dart';
 import 'package:frontend/spv/notification.dart';
 import 'package:frontend/spv/account.dart';
+import 'package:frontend/spv/button_nav.dart';
 
 class Working extends StatefulWidget {
   const Working({super.key});
@@ -46,7 +47,6 @@ class _WorkingState extends State<Working> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -103,53 +103,9 @@ class _WorkingState extends State<Working> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.black,
-        selectedLabelStyle: const TextStyle(color: Colors.black),
-        unselectedLabelStyle: const TextStyle(color: Colors.black),
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: _buildIcon('assets/icons/home.png', 0),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: _buildIcon('assets/icons/working.png', 1),
-            label: 'Working List',
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.only(bottom: 0),
-              child: Container(
-                width: screenWidth * 0.13,
-                height: screenWidth * 0.13,
-                decoration: const BoxDecoration(
-                  color: Color(0xFF4282C2),
-                  shape: BoxShape.circle,
-                ),
-                child: Center(
-                  child: Image.asset(
-                    'assets/icons/lapor.png',
-                    width: screenWidth * 0.05,
-                    height: screenHeight * 0.03,
-                  ),
-                ),
-              ),
-            ),
-            label: 'Lapor',
-          ),
-          BottomNavigationBarItem(
-            icon: _buildIcon('assets/icons/notifikasi.png', 3),
-            label: 'Notifikasi',
-          ),
-          BottomNavigationBarItem(
-            icon: _buildIcon('assets/icons/account.png', 4),
-            label: 'Account',
-          ),
-        ],
+      bottomNavigationBar: BottomNav(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }
