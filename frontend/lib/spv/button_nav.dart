@@ -17,34 +17,41 @@ class BottomNav extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        BottomNavigationBar(
-          currentIndex: selectedIndex,
-          onTap: onItemTapped,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.black,
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: _buildIcon('assets/icons/home.png', 0, selectedIndex),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: _buildIcon('assets/icons/working.png', 1, selectedIndex),
-              label: 'Working List',
-            ),
-            BottomNavigationBarItem(
-              icon: const SizedBox.shrink(),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: _buildIcon('assets/icons/notifikasi.png', 3, selectedIndex),
-              label: 'Notifikasi',
-            ),
-            BottomNavigationBarItem(
-              icon: _buildIcon('assets/icons/account.png', 4, selectedIndex),
-              label: 'Account',
-            ),
-          ],
+        ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+          child: BottomNavigationBar(
+            currentIndex: selectedIndex,
+            onTap: onItemTapped,
+            selectedItemColor: Colors.blue,
+            unselectedItemColor: Colors.black,
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Colors.white,
+            items: [
+              BottomNavigationBarItem(
+                icon: _buildIcon('assets/icons/home.png', 0, selectedIndex),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: _buildIcon('assets/icons/working.png', 1, selectedIndex),
+                label: 'Working List',
+              ),
+              BottomNavigationBarItem(
+                icon: const SizedBox.shrink(),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: _buildIcon('assets/icons/notifikasi.png', 3, selectedIndex),
+                label: 'Notifikasi',
+              ),
+              BottomNavigationBarItem(
+                icon: _buildIcon('assets/icons/account.png', 4, selectedIndex),
+                label: 'Account',
+              ),
+            ],
+          ),
         ),
         Positioned(
           top: -20,
@@ -62,8 +69,7 @@ class BottomNav extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                   child: Center(
-                    child:
-                        _buildIcon('assets/icons/search.png', 2, selectedIndex),
+                    child: _buildIcon('assets/icons/search.png', 2, selectedIndex),
                   ),
                 ),
                 const SizedBox(height: 0),
@@ -83,11 +89,20 @@ class BottomNav extends StatelessWidget {
   }
 
   Widget _buildIcon(String assetPath, int index, int selectedIndex) {
+    if (index == 2) {
+      return Image.asset(
+        assetPath,
+        width: 24.0,
+        height: 24.0,
+      );
+    }
+
     Color color = selectedIndex == index ? Colors.blue : Colors.black;
     return Image.asset(
       assetPath,
-      width: 24.0, // Adjust size as needed
-      height: 24.0, // Adjust size as needed
+      width: 24.0,
+      height: 24.0,
+      color: color,
     );
   }
 }

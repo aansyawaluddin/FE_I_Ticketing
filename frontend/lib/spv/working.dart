@@ -134,18 +134,6 @@ class _WorkingState extends State<Working> {
     );
   }
 
-  Widget _buildIcon(String assetPath, int index) {
-    Color color = _selectedIndex == index ? Colors.blue : Colors.black;
-    return ColorFiltered(
-      colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
-      child: Image.asset(
-        assetPath,
-        width: 24.0,
-        height: 24.0,
-      ),
-    );
-  }
-
   static DataRow createRow(
       String name, String department, String status, BuildContext context) {
     Color backgroundColor;

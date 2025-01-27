@@ -14,10 +14,11 @@ class DetailTicket extends StatelessWidget {
             fontSize: 20,
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xFFEAEAEA),
         iconTheme: IconThemeData(color: Colors.black),
         elevation: 0,
       ),
+      backgroundColor: const Color(0xFFEAEAEA),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

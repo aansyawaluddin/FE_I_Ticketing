@@ -58,7 +58,9 @@ class _NotificationState extends State<NotificationPage> {
           ),
         ),
         centerTitle: false,
+        backgroundColor: const Color(0xFFEAEAEA),
       ),
+      backgroundColor: const Color(0xFFEAEAEA),
       body: ListView(
         padding: EdgeInsets.all(16.0),
         children: [

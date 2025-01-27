@@ -49,12 +49,11 @@ class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      extendBodyBehindAppBar: false,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
           'Profil',
@@ -64,8 +63,15 @@ class _AccountPageState extends State<AccountPage> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        backgroundColor: const Color(0xFFEAEAEA),
         centerTitle: false,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            color: const Color(0xFFEAEAEA),
+          ),
+        ),
       ),
+      backgroundColor: const Color(0xFFEAEAEA),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,7 +84,7 @@ class _AccountPageState extends State<AccountPage> {
                   radius: 60,
                   backgroundColor: Colors.grey[300],
                   child:
-                      const Icon(Icons.person, size: 60, color: Colors.white),
+                  const Icon(Icons.person, size: 60, color: Colors.white),
                 ),
                 Positioned(
                   bottom: 5,
@@ -132,29 +138,32 @@ class _AccountPageState extends State<AccountPage> {
               });
             }),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LoginPage(),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 50),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPage(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  minimumSize: Size(screenWidth - 40, 50),
                 ),
-                minimumSize: Size(screenWidth - 40, 50),
-              ),
-              child: Text(
-                'Keluar',
-                style: GoogleFonts.montserrat(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                child: Text(
+                  'Keluar',
+                  style: GoogleFonts.montserrat(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
@@ -205,7 +214,7 @@ class _AccountPageState extends State<AccountPage> {
   void _showEditDialog(
       String label, String currentValue, Function(String)? onChanged) {
     TextEditingController controller =
-        TextEditingController(text: currentValue);
+    TextEditingController(text: currentValue);
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -217,13 +226,13 @@ class _AccountPageState extends State<AccountPage> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('Batal'),
+              child: const Text('Batal'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text('Simpan'),
+              child: const Text('Simpan'),
               onPressed: () {
                 if (onChanged != null) {
                   onChanged(controller.text);
