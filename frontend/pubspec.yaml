@@ -22,9 +22,11 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/icons/logo.png
     - assets/icons/home.png
     - assets/icons/working.png
     - assets/icons/lapor.png
+    - assets/icons/search.png
     - assets/icons/notifikasi.png
     - assets/icons/account.png
     - assets/icons/detail_ticket.png
