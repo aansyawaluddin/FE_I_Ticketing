@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:frontend/spv/working.dart';
-import 'package:frontend/spv/dashboard.dart';
+import 'package:frontend/spv/home.dart';
 import 'package:frontend/spv/account.dart';
+import 'package:frontend/spv/search.dart';
 import 'package:frontend/spv/button_nav.dart';
 
 class NotificationPage extends StatefulWidget {
@@ -30,6 +31,8 @@ class _NotificationState extends State<NotificationPage> {
         context,
         MaterialPageRoute(builder: (context) => const Working()),
       );
+    } else if (index == 2) {
+      showSearchPopup(context);
     } else if (index == 4) {
       Navigator.pushReplacement(
         context,

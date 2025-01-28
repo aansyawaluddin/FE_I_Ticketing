@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:frontend/login.dart';
-import 'package:frontend/spv/dashboard.dart';
+import 'package:frontend/spv/home.dart';
 import 'package:frontend/spv/working.dart';
 import 'package:frontend/spv/notification.dart';
+import 'package:frontend/spv/search.dart';
 import 'package:frontend/spv/button_nav.dart';
 
 class AccountPage extends StatefulWidget {
@@ -37,6 +38,8 @@ class _AccountPageState extends State<AccountPage> {
           context,
           MaterialPageRoute(builder: (context) => const Working()),
         );
+      } else if (index == 2) {
+        showSearchPopup(context);
       } else if (index == 3) {
         Navigator.pushReplacement(
           context,
@@ -84,7 +87,7 @@ class _AccountPageState extends State<AccountPage> {
                   radius: 60,
                   backgroundColor: Colors.grey[300],
                   child:
-                  const Icon(Icons.person, size: 60, color: Colors.white),
+                      const Icon(Icons.person, size: 60, color: Colors.white),
                 ),
                 Positioned(
                   bottom: 5,
@@ -214,7 +217,7 @@ class _AccountPageState extends State<AccountPage> {
   void _showEditDialog(
       String label, String currentValue, Function(String)? onChanged) {
     TextEditingController controller =
-    TextEditingController(text: currentValue);
+        TextEditingController(text: currentValue);
     showDialog(
       context: context,
       builder: (BuildContext context) {

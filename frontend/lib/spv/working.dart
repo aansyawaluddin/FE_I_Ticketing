@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:frontend/spv/dashboard.dart';
+import 'package:frontend/spv/home.dart';
 import 'package:frontend/spv/detail_ticket.dart';
 import 'package:frontend/spv/notification.dart';
 import 'package:frontend/spv/account.dart';
+import 'package:frontend/spv/search.dart';
 import 'package:frontend/spv/button_nav.dart';
 
 class Working extends StatefulWidget {
@@ -26,6 +27,8 @@ class _WorkingState extends State<Working> {
         context,
         MaterialPageRoute(builder: (context) => const DashboardScreen()),
       );
+    } else if (index == 2) {
+      showSearchPopup(context);
     } else if (index == 3) {
       Navigator.pushReplacement(
         context,

@@ -27,6 +27,7 @@ flutter:
     - assets/icons/working.png
     - assets/icons/lapor.png
     - assets/icons/search.png
+    - assets/icons/search2.png
     - assets/icons/notifikasi.png
     - assets/icons/account.png
     - assets/icons/detail_ticket.png

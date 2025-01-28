@@ -43,7 +43,8 @@ class BottomNav extends StatelessWidget {
                 label: '',
               ),
               BottomNavigationBarItem(
-                icon: _buildIcon('assets/icons/notifikasi.png', 3, selectedIndex),
+                icon:
+                    _buildIcon('assets/icons/notifikasi.png', 3, selectedIndex),
                 label: 'Notifikasi',
               ),
               BottomNavigationBarItem(
@@ -69,12 +70,13 @@ class BottomNav extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                   child: Center(
-                    child: _buildIcon('assets/icons/search.png', 2, selectedIndex),
+                    child:
+                        _buildIcon('assets/icons/search.png', 2, selectedIndex),
                   ),
                 ),
                 const SizedBox(height: 0),
                 const Text(
-                  'Lapor',
+                  'Search',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 12,

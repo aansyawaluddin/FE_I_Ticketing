@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:frontend/spv/working.dart';
 import 'package:frontend/spv/notification.dart';
 import 'package:frontend/spv/account.dart';
+import 'package:frontend/spv/search.dart';
 import 'package:frontend/spv/button_nav.dart';
 
 class MyApp extends StatelessWidget {
@@ -36,6 +37,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
         context,
         MaterialPageRoute(builder: (context) => const Working()),
       );
+    } else if (index == 2) {
+      showSearchPopup(context);
     } else if (index == 3) {
       Navigator.pushReplacement(
         context,

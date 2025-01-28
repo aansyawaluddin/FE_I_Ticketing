@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:frontend/spv/dashboard.dart';
+import 'package:frontend/spv/home.dart';
 
 void main() {
   runApp(const MyApp());
