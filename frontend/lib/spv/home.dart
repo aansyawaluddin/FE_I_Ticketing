@@ -91,156 +91,158 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             backgroundColor: const Color(0xFFEAEAEA),
           ),
-          body: Container(
-            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: screenHeight * 0.01),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _buildInfoCard('All Ticket', 25, screenWidth),
-                    _buildInfoCard('Solve', 10, screenWidth),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _buildInfoCard('To Do', 5, screenWidth),
-                    _buildInfoCard('Over Due', 25, screenWidth),
-                  ],
-                ),
-                SizedBox(height: screenHeight * 0.02),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(
-                    'Daily Grafik',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 16,
-                      color: Colors.black,
+          body: SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: screenHeight * 0.01),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildInfoCard('All Ticket', 25, screenWidth),
+                      _buildInfoCard('Solve', 10, screenWidth),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildInfoCard('To Do', 5, screenWidth),
+                      _buildInfoCard('Over Due', 25, screenWidth),
+                    ],
+                  ),
+                  SizedBox(height: screenHeight * 0.02),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      'Daily Grafik',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: screenWidth * 0.02, top: screenHeight * 0.01),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: screenHeight * 0.25,
-                    child: Stack(
-                      children: [
-                        BarChart(
-                          BarChartData(
-                            barGroups: [
-                              BarChartGroupData(
-                                x: 1,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 8,
-                                    color: Colors.red,
-                                    width: screenWidth * 0.07,
-                                    borderRadius: BorderRadius.zero,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 2,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 5,
-                                    color: Colors.yellow,
-                                    width: screenWidth * 0.07,
-                                    borderRadius: BorderRadius.zero,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 3,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 10,
-                                    color: Colors.green,
-                                    width: screenWidth * 0.07,
-                                    borderRadius: BorderRadius.zero,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 4,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 7,
-                                    color: Colors.green,
-                                    width: screenWidth * 0.07,
-                                    borderRadius: BorderRadius.zero,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 5,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 6,
-                                    color: Colors.green,
-                                    width: screenWidth * 0.07,
-                                    borderRadius: BorderRadius.zero,
-                                  ),
-                                ],
-                              ),
-                              BarChartGroupData(
-                                x: 6,
-                                barRods: [
-                                  BarChartRodData(
-                                    toY: 4,
-                                    color: Colors.green,
-                                    width: screenWidth * 0.07,
-                                    borderRadius: BorderRadius.zero,
-                                  ),
-                                ],
-                              ),
-                            ],
-                            titlesData: FlTitlesData(show: false),
-                            borderData: FlBorderData(show: false),
-                            gridData: FlGridData(show: false),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: screenWidth * 0.02, top: screenHeight * 0.01),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: screenHeight * 0.25,
+                      child: Stack(
+                        children: [
+                          BarChart(
+                            BarChartData(
+                              barGroups: [
+                                BarChartGroupData(
+                                  x: 1,
+                                  barRods: [
+                                    BarChartRodData(
+                                      toY: 8,
+                                      color: Colors.red,
+                                      width: screenWidth * 0.07,
+                                      borderRadius: BorderRadius.zero,
+                                    ),
+                                  ],
+                                ),
+                                BarChartGroupData(
+                                  x: 2,
+                                  barRods: [
+                                    BarChartRodData(
+                                      toY: 5,
+                                      color: Colors.yellow,
+                                      width: screenWidth * 0.07,
+                                      borderRadius: BorderRadius.zero,
+                                    ),
+                                  ],
+                                ),
+                                BarChartGroupData(
+                                  x: 3,
+                                  barRods: [
+                                    BarChartRodData(
+                                      toY: 10,
+                                      color: Colors.green,
+                                      width: screenWidth * 0.07,
+                                      borderRadius: BorderRadius.zero,
+                                    ),
+                                  ],
+                                ),
+                                BarChartGroupData(
+                                  x: 4,
+                                  barRods: [
+                                    BarChartRodData(
+                                      toY: 7,
+                                      color: Colors.green,
+                                      width: screenWidth * 0.07,
+                                      borderRadius: BorderRadius.zero,
+                                    ),
+                                  ],
+                                ),
+                                BarChartGroupData(
+                                  x: 5,
+                                  barRods: [
+                                    BarChartRodData(
+                                      toY: 6,
+                                      color: Colors.green,
+                                      width: screenWidth * 0.07,
+                                      borderRadius: BorderRadius.zero,
+                                    ),
+                                  ],
+                                ),
+                                BarChartGroupData(
+                                  x: 6,
+                                  barRods: [
+                                    BarChartRodData(
+                                      toY: 4,
+                                      color: Colors.green,
+                                      width: screenWidth * 0.07,
+                                      borderRadius: BorderRadius.zero,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                              titlesData: FlTitlesData(show: false),
+                              borderData: FlBorderData(show: false),
+                              gridData: FlGridData(show: false),
+                            ),
                           ),
-                        ),
-                        Positioned.fill(
-                          child: CustomPaint(
-                            painter: LinePainter(),
+                          Positioned.fill(
+                            child: CustomPaint(
+                              painter: LinePainter(),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(height: screenHeight * 0.02),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(
-                    'Penunjukan Tim',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 16,
-                      color: Colors.black,
+                  SizedBox(height: screenHeight * 0.02),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      'Penunjukan Tim',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(height: screenHeight * 0.03),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _buildInfoCard('All Ticket', 25, screenWidth),
-                    _buildInfoCard('Assign', 10, screenWidth),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _buildInfoCard('Not Assign', 10, screenWidth),
-                    _buildInfoCard('Pending', 5, screenWidth),
-                  ],
-                ),
-              ],
+                  SizedBox(height: screenHeight * 0.03),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildInfoCard('All Ticket', 25, screenWidth),
+                      _buildInfoCard('Assign', 10, screenWidth),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildInfoCard('Not Assign', 10, screenWidth),
+                      _buildInfoCard('Pending', 5, screenWidth),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           bottomNavigationBar: BottomNav(
