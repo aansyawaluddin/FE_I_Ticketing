@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:frontend/superadmin/home.dart';
-import 'package:frontend/superadmin/team_list.dart';
+import 'package:frontend/superadmin/performance.dart';
 import 'package:frontend/superadmin/add_user.dart';
 import 'package:frontend/superadmin/button_nav.dart';
 
@@ -73,11 +73,11 @@ class _UserListState extends State<UserList> {
               icon: Icon(Icons.add, color: Colors.black),
               onPressed: () {
                 Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailTicket(),
-                ),
-              );
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailTicket(),
+                  ),
+                );
               },
             ),
           ],
@@ -207,7 +207,7 @@ class _UserListState extends State<UserList> {
         DataCell(
           Center(
             child: Container(
-              width: 65,
+              width: 70,
               padding:
                   const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
               decoration: BoxDecoration(

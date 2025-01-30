@@ -35,8 +35,9 @@ class BottomNav extends StatelessWidget {
                 label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: _buildIcon('assets/icons/team_list.png', 1, selectedIndex),
-                label: 'Team List',
+                icon: _buildIcon(
+                    'assets/icons/performance.png', 1, selectedIndex),
+                label: 'Performance',
               ),
               BottomNavigationBarItem(
                 icon: const SizedBox.shrink(),
@@ -70,8 +71,8 @@ class BottomNav extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                   child: Center(
-                    child:
-                        _buildIcon('assets/icons/user_list.png', 2, selectedIndex),
+                    child: _buildIcon(
+                        'assets/icons/user_list.png', 2, selectedIndex),
                   ),
                 ),
                 const SizedBox(height: 0),

@@ -101,15 +101,15 @@ class _DashboardScreenState extends State<DashboardSpv> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildInfoCard('All Ticket', 25, screenWidth),
-                      _buildInfoCard('Solve', 10, screenWidth),
+                      _buildInfoCard('All Ticket', 25, 'assets/icons/allticket.png', screenWidth),
+                      _buildInfoCard('Solve', 10, 'assets/icons/solve.png',screenWidth),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildInfoCard('To Do', 5, screenWidth),
-                      _buildInfoCard('Over Due', 25, screenWidth),
+                      _buildInfoCard('To Do', 5, 'assets/icons/todo.png', screenWidth),
+                      _buildInfoCard('Over Due', 25,'assets/icons/overdue.png', screenWidth),
                     ],
                   ),
                   SizedBox(height: screenHeight * 0.02),
@@ -230,15 +230,15 @@ class _DashboardScreenState extends State<DashboardSpv> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildInfoCard('All Ticket', 25, screenWidth),
-                      _buildInfoCard('Assign', 10, screenWidth),
+                      _buildInfoCard('All Ticket', 25, '',screenWidth),
+                      _buildInfoCard('Assign', 10, '',screenWidth),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildInfoCard('Not Assign', 10, screenWidth),
-                      _buildInfoCard('Pending', 5, screenWidth),
+                      _buildInfoCard('Not Assign', 10,'', screenWidth),
+                      _buildInfoCard('Pending', 5,'', screenWidth),
                     ],
                   ),
                 ],
@@ -255,7 +255,7 @@ class _DashboardScreenState extends State<DashboardSpv> {
   }
 }
 
-Widget _buildInfoCard(String title, int count, double screenWidth) {
+Widget _buildInfoCard(String title, int count, String iconPath, double screenWidth) {
   return Card(
     elevation: 0.5,
     color: const Color.fromARGB(255, 253, 251, 251),
@@ -263,7 +263,7 @@ Widget _buildInfoCard(String title, int count, double screenWidth) {
       borderRadius: BorderRadius.circular(10),
     ),
     child: Container(
-      padding: EdgeInsets.all(screenWidth * 0.01),
+      padding: EdgeInsets.all(screenWidth * 0.02),
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.black,
@@ -273,36 +273,45 @@ Widget _buildInfoCard(String title, int count, double screenWidth) {
       ),
       width: screenWidth * 0.43,
       height: screenWidth * 0.15,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Padding(
-            padding: EdgeInsets.only(left: screenWidth * 0.02),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 12,
-                    color: const Color(0XFFA6A6A6),
-                  ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                title,
+                style: GoogleFonts.montserrat(
+                  fontSize: 12,
+                  color: const Color(0XFFA6A6A6),
                 ),
-                Text(
-                  '$count',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 20,
-                    color: Colors.black,
-                  ),
+              ),
+              Text(
+                '$count',
+                style: GoogleFonts.montserrat(
+                  fontSize: 20,
+                  color: Colors.black,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
+          Spacer(),
+          if (iconPath.isNotEmpty) // Cek jika iconPath tidak kosong
+            Padding(
+              padding: EdgeInsets.only(right: 1.0), 
+              child: Image.asset(
+                iconPath,
+                width: 24,
+                height: 24,
+              ),
+            ),
         ],
       ),
     ),
   );
 }
+
 
 class LinePainter extends CustomPainter {
   @override

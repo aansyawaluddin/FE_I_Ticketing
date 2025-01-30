@@ -119,23 +119,23 @@ class _AccountPageState extends State<AccountPage> {
               ),
             ),
             const Divider(height: 30, thickness: 1, indent: 20, endIndent: 20),
-            _buildEditableCard('Nama', name, (newValue) {
+            _buildEditableCard(name, (newValue) {
               setState(() {
                 name = newValue;
               });
             }),
-            _buildEditableCard('Email', email, (newValue) {
+            _buildEditableCard(email, (newValue) {
               setState(() {
                 email = newValue;
               });
             }),
-            _buildEditableCard('SKPD', skpd, null, isEditable: false),
-            _buildEditableCard('Telepon', phone, (newValue) {
+            _buildEditableCard(skpd, null, isEditable: false),
+            _buildEditableCard(phone, (newValue) {
               setState(() {
                 phone = newValue;
               });
             }),
-            _buildEditableCard('Username', username, (newValue) {
+            _buildEditableCard(username, (newValue) {
               setState(() {
                 username = newValue;
               });
@@ -180,8 +180,7 @@ class _AccountPageState extends State<AccountPage> {
     );
   }
 
-  Widget _buildEditableCard(
-      String label, String value, Function(String)? onChanged,
+  Widget _buildEditableCard(String value, Function(String)? onChanged,
       {bool isEditable = true}) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -194,7 +193,7 @@ class _AccountPageState extends State<AccountPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              '$label: $value',
+              value,
               style: GoogleFonts.montserrat(
                 color: Colors.black,
                 fontSize: 14,
@@ -205,7 +204,7 @@ class _AccountPageState extends State<AccountPage> {
               IconButton(
                 icon: const Icon(Icons.edit_outlined, color: Colors.black),
                 onPressed: () {
-                  _showEditDialog(label, value, onChanged);
+                  _showEditDialog(value, onChanged);
                 },
               ),
           ],
@@ -214,18 +213,16 @@ class _AccountPageState extends State<AccountPage> {
     );
   }
 
-  void _showEditDialog(
-      String label, String currentValue, Function(String)? onChanged) {
-    TextEditingController controller =
-        TextEditingController(text: currentValue);
+  void _showEditDialog(String currentValue, Function(String)? onChanged) {
+    TextEditingController controller = TextEditingController(text: currentValue);
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Edit $label'),
+          title: Text('Edit'),
           content: TextField(
             controller: controller,
-            decoration: InputDecoration(hintText: 'Masukkan $label baru'),
+            decoration: const InputDecoration(hintText: 'Masukkan nilai baru'),
           ),
           actions: <Widget>[
             TextButton(
