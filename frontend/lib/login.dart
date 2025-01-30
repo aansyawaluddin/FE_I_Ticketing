@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:frontend/spv/home.dart';
+import 'package:frontend/superadmin/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,8 +32,11 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _isLoading = false;
 
-  final String _validEmail = 'spv@gmail.com';
-  final String _validPassword = 'spv';
+  final String _validEmailSpv = 'spv';
+  final String _validPasswordSpv = 'spv';
+
+  final String _validEmailSuperAdmin = 'super';
+  final String _validPasswordSuperAdmin = 'super';
 
   Future<void> _login() async {
     String email = _emailController.text;
@@ -48,10 +52,16 @@ class _LoginPageState extends State<LoginPage> {
       _isLoading = false;
     });
 
-    if (email == _validEmail && password == _validPassword) {
+    if (email == _validEmailSpv && password == _validPasswordSpv) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const DashboardScreen()),
+        MaterialPageRoute(builder: (context) => const DashboardSpv()),
+      );
+    } else if (email == _validEmailSuperAdmin &&
+        password == _validPasswordSuperAdmin) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const DashboardSuperAdmin()),
       );
     } else {
       _showErrorDialog();

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/superadmin/team_list.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:frontend/spv/home.dart';
 import 'package:frontend/spv/detail_ticket.dart';
 import 'package:frontend/spv/notification.dart';
 import 'package:frontend/spv/account.dart';
-import 'package:frontend/spv/search.dart';
-import 'package:frontend/spv/button_nav.dart';
+import 'package:frontend/superadmin/button_nav.dart';
 
-class Working extends StatefulWidget {
-  const Working({super.key});
+class UserList extends StatefulWidget {
+  const UserList({super.key});
 
   @override
-  _WorkingState createState() => _WorkingState();
+  _UserListState createState() => _UserListState();
 }
 
-class _WorkingState extends State<Working> {
-  int _selectedIndex = 1;
+class _UserListState extends State<UserList> {
+  int _selectedIndex = 2;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -27,8 +27,12 @@ class _WorkingState extends State<Working> {
         context,
         MaterialPageRoute(builder: (context) => const DashboardSpv()),
       );
-    } else if (index == 2) {
-      showSearchPopup(context);
+    }
+    if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const TeamList()),
+      );
     } else if (index == 3) {
       Navigator.pushReplacement(
         context,
@@ -54,7 +58,7 @@ class _WorkingState extends State<Working> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(
-          "Working List",
+          "User List",
           style: GoogleFonts.montserrat(
             color: Colors.black,
             fontSize: 20,
@@ -75,30 +79,30 @@ class _WorkingState extends State<Working> {
                 headingRowHeight: 60.0,
                 columns: [
                   DataColumn(
-                    label: _buildColumnTitle('Nama', 'Tim EOS'),
+                    label: _buildColumnTitle('Nama', 'User'),
                     numeric: false,
-                    tooltip: 'Nama\nTim EOS',
+                    tooltip: 'Nama User',
                   ),
                   DataColumn(
-                    label: _buildColumnTitle('Dinas', 'Pelapor'),
+                    label: _buildColumnTitle('Jabatan',''),
                     numeric: false,
-                    tooltip: "Dinas Pelapor",
+                    tooltip: "Jabatan",
                   ),
                   DataColumn(
-                    label: _buildColumnTitle('Progres', 'Ticket'),
+                    label: _buildColumnTitle('Role', 'User'),
                     numeric: false,
-                    tooltip: "Progres Ticket",
+                    tooltip: "Role User",
                   ),
                   DataColumn(
-                    label: _buildColumnTitle('Ticket', 'Detail'),
+                    label: _buildColumnTitle('View', 'Detail'),
                     numeric: false,
-                    tooltip: "Ticket Detail",
+                    tooltip: "View Detail",
                   ),
                 ],
                 rows: [
-                  createRow('Muh. Rezky', 'Dispora', 'Belum', context),
-                  createRow('Akbar', 'Diskominfo', 'Selesai', context),
-                  createRow('Reza Maulana', 'Dispora', 'Proses', context),
+                  createRow('Muh. Rezky', 'Kepala Dinas', 'Belum', context),
+                  createRow('Akbar', 'Eos Telkom', 'Selesai', context),
+                  createRow('Reza Maulana', 'CS Diskominfo', 'Proses', context),
                   createRow('Nasaruddin', 'Dukcapil', 'Proses', context),
                 ],
               ),
@@ -138,7 +142,7 @@ class _WorkingState extends State<Working> {
   }
 
   static DataRow createRow(
-      String name, String department, String status, BuildContext context) {
+      String name, String jabatan, String status, BuildContext context) {
     Color backgroundColor;
     Color textColor = Colors.white;
 
@@ -172,7 +176,7 @@ class _WorkingState extends State<Working> {
             width: 75,
             padding: const EdgeInsets.symmetric(vertical: 6.0),
             child: Text(
-              department,
+              jabatan,
               style: GoogleFonts.montserrat(
                 color: Colors.black,
                 fontSize: 14,

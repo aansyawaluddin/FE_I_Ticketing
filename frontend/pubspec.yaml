@@ -32,3 +32,6 @@ flutter:
     - assets/icons/account.png
     - assets/icons/detail_ticket.png
     - assets/images/detail_ticket.png
+    - assets/icons/user_list.png
+    - assets/icons/team_list.png
+

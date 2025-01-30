@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:frontend/spv/working.dart';
 import 'package:frontend/spv/notification.dart';
 import 'package:frontend/spv/account.dart';
-import 'package:frontend/spv/search.dart';
-import 'package:frontend/spv/button_nav.dart';
+import 'package:frontend/superadmin/button_nav.dart';
+import 'package:frontend/superadmin/team_list.dart';
+import 'package:frontend/superadmin/user_list.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,30 +16,33 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.montserratTextTheme(),
       ),
-      home: DashboardSpv(),
+      home: DashboardSuperAdmin(),
     );
   }
 }
 
-class DashboardSpv extends StatefulWidget {
-  const DashboardSpv({super.key});
+class DashboardSuperAdmin extends StatefulWidget {
+  const DashboardSuperAdmin({super.key});
 
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardSpv> {
+class _DashboardScreenState extends State<DashboardSuperAdmin> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     if (index == 1) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const Working()),
+        MaterialPageRoute(builder: (context) => const TeamList()),
       );
-    } else if (index == 2) {
-      showSearchPopup(context);
-    } else if (index == 3) {
+    } if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const UserList()),
+      );
+    }  else if (index == 3) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const NotificationPage()),

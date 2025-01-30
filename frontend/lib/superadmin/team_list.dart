@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:frontend/spv/home.dart';
-import 'package:frontend/spv/detail_ticket.dart';
+import 'package:frontend/superadmin/home.dart';
+import 'package:frontend/superadmin/user_list.dart';
 import 'package:frontend/spv/notification.dart';
 import 'package:frontend/spv/account.dart';
-import 'package:frontend/spv/search.dart';
-import 'package:frontend/spv/button_nav.dart';
+import 'package:frontend/superadmin/button_nav.dart';
 
-class Working extends StatefulWidget {
-  const Working({super.key});
+class TeamList extends StatefulWidget {
+  const TeamList({super.key});
 
   @override
-  _WorkingState createState() => _WorkingState();
+  _TeamListState createState() => _TeamListState();
 }
 
-class _WorkingState extends State<Working> {
+class _TeamListState extends State<TeamList> {
   int _selectedIndex = 1;
 
   void _onItemTapped(int index) {
@@ -25,10 +24,14 @@ class _WorkingState extends State<Working> {
     if (index == 0) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const DashboardSpv()),
+        MaterialPageRoute(builder: (context) => const DashboardSuperAdmin()),
       );
-    } else if (index == 2) {
-      showSearchPopup(context);
+    }
+    if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const UserList()),
+      );
     } else if (index == 3) {
       Navigator.pushReplacement(
         context,
@@ -54,7 +57,7 @@ class _WorkingState extends State<Working> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(
-          "Working List",
+          "Team List",
           style: GoogleFonts.montserrat(
             color: Colors.black,
             fontSize: 20,
@@ -75,14 +78,14 @@ class _WorkingState extends State<Working> {
                 headingRowHeight: 60.0,
                 columns: [
                   DataColumn(
-                    label: _buildColumnTitle('Nama', 'Tim EOS'),
+                    label: _buildColumnTitle('Nama', 'Tim'),
                     numeric: false,
-                    tooltip: 'Nama\nTim EOS',
+                    tooltip: 'Nama\nTim',
                   ),
                   DataColumn(
-                    label: _buildColumnTitle('Dinas', 'Pelapor'),
+                    label: _buildColumnTitle('All', 'Ticket'),
                     numeric: false,
-                    tooltip: "Dinas Pelapor",
+                    tooltip: "All Ticket",
                   ),
                   DataColumn(
                     label: _buildColumnTitle('Progres', 'Ticket'),
@@ -90,16 +93,16 @@ class _WorkingState extends State<Working> {
                     tooltip: "Progres Ticket",
                   ),
                   DataColumn(
-                    label: _buildColumnTitle('Ticket', 'Detail'),
+                    label: _buildColumnTitle('Customer', 'Review'),
                     numeric: false,
-                    tooltip: "Ticket Detail",
+                    tooltip: "Customer Review",
                   ),
                 ],
                 rows: [
-                  createRow('Muh. Rezky', 'Dispora', 'Belum', context),
-                  createRow('Akbar', 'Diskominfo', 'Selesai', context),
-                  createRow('Reza Maulana', 'Dispora', 'Proses', context),
-                  createRow('Nasaruddin', 'Dukcapil', 'Proses', context),
+                  createRow('Muh. Rezky', 25, 0.75, "Netral"),
+                  createRow('Akbar', 10, 0.50, "Positif"),
+                  createRow('Reza Maulana', 25, 0.25, "Negatif"),
+                  createRow('Nasaruddin', 25, 0.35, "Netral"),
                 ],
               ),
             ],
@@ -138,16 +141,16 @@ class _WorkingState extends State<Working> {
   }
 
   static DataRow createRow(
-      String name, String department, String status, BuildContext context) {
+      String name, int allTicket, double progressTicket, String status) {
     Color backgroundColor;
     Color textColor = Colors.white;
 
-    if (status == 'Belum') {
+    if (status == 'Negatif') {
       backgroundColor = const Color(0xFF9A2420);
-    } else if (status == 'Selesai') {
+    } else if (status == 'Positif') {
       backgroundColor = const Color(0xFF42C25E);
-    } else if (status == 'Proses') {
-      backgroundColor = const Color(0xFFC2BD42);
+    } else if (status == 'Netral') {
+      backgroundColor = const Color(0xFF000000);
     } else {
       backgroundColor = Colors.transparent;
     }
@@ -155,35 +158,58 @@ class _WorkingState extends State<Working> {
     return DataRow(
       cells: [
         DataCell(
-          Container(
-            width: 75,
-            padding: const EdgeInsets.symmetric(vertical: 6.0),
-            child: Text(
-              name,
-              style: GoogleFonts.montserrat(
-                color: Colors.black,
-                fontSize: 14,
-              ),
-            ),
-          ),
-        ),
-        DataCell(
-          Container(
-            width: 75,
-            padding: const EdgeInsets.symmetric(vertical: 6.0),
-            child: Text(
-              department,
-              style: GoogleFonts.montserrat(
-                color: Colors.black,
-                fontSize: 14,
-              ),
-            ),
-          ),
-        ),
-        DataCell(
-          Center(
+          Align(
+            alignment: Alignment.center,
             child: Container(
-              width: 65,
+              width: 75,
+              padding: const EdgeInsets.symmetric(vertical: 6.0),
+              child: Text(
+                name,
+                style: GoogleFonts.montserrat(
+                  color: Colors.black,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ),
+        ),
+        DataCell(
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              width: 62,
+              padding: const EdgeInsets.symmetric(vertical: 6.0),
+              child: Text(
+                allTicket.toString(),
+                style: GoogleFonts.montserrat(
+                  color: Colors.black,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ),
+        ),
+        DataCell(
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              width: 62,
+              padding: const EdgeInsets.symmetric(vertical: 6.0),
+              child: Text(
+                '${(progressTicket * 100).toStringAsFixed(0)}%',
+                style: GoogleFonts.montserrat(
+                  color: Colors.black,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ),
+        ),
+        DataCell(
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              width: 62,
               padding:
                   const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
               decoration: BoxDecoration(
@@ -197,28 +223,6 @@ class _WorkingState extends State<Working> {
                   fontSize: 14,
                 ),
                 textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        ),
-        DataCell(
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailTicket(),
-                ),
-              );
-            },
-            child: Container(
-              width: 48.0,
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(vertical: 6.0),
-              child: Image.asset(
-                'assets/icons/detail_ticket.png',
-                height: 24.0,
-                width: 24.0,
               ),
             ),
           ),

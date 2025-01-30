@@ -31,7 +31,7 @@ class _AccountPageState extends State<AccountPage> {
       if (index == 0) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const DashboardScreen()),
+          MaterialPageRoute(builder: (context) => const DashboardSpv()),
         );
       } else if (index == 1) {
         Navigator.pushReplacement(
