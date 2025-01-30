@@ -31,6 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   bool _isLoading = false;
+  bool _isObscure = true;
 
   final String _validEmailSpv = 'spv';
   final String _validPasswordSpv = 'spv';
@@ -132,11 +133,20 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(height: 20),
                     TextField(
                       controller: _passwordController,
-                      obscureText: true,
+                      obscureText: _isObscure,
                       decoration: InputDecoration(
                         labelText: 'Password',
                         labelStyle: GoogleFonts.montserrat(),
-                        suffixIcon: const Icon(Icons.visibility_off),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _isObscure ? Icons.visibility_off : Icons.visibility,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isObscure = !_isObscure;
+                            });
+                          },
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
@@ -156,15 +166,15 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         child: _isLoading
                             ? const CircularProgressIndicator(
-                                color: Colors.white)
+                            color: Colors.white)
                             : Text(
-                                'Masuk',
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                          'Masuk',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                   ],

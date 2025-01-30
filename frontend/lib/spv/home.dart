@@ -273,12 +273,12 @@ Widget _buildInfoCard(String title, int count, String iconPath, double screenWid
       ),
       width: screenWidth * 0.43,
       height: screenWidth * 0.15,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 title,
@@ -287,25 +287,21 @@ Widget _buildInfoCard(String title, int count, String iconPath, double screenWid
                   color: const Color(0XFFA6A6A6),
                 ),
               ),
-              Text(
-                '$count',
-                style: GoogleFonts.montserrat(
-                  fontSize: 20,
-                  color: Colors.black,
+              if (iconPath.isNotEmpty)
+                Image.asset(
+                  iconPath,
+                  width: 20,
+                  height: 20,
                 ),
-              ),
             ],
           ),
-          Spacer(),
-          if (iconPath.isNotEmpty) // Cek jika iconPath tidak kosong
-            Padding(
-              padding: EdgeInsets.only(right: 1.0), 
-              child: Image.asset(
-                iconPath,
-                width: 24,
-                height: 24,
-              ),
+          Text(
+            '$count',
+            style: GoogleFonts.montserrat(
+              fontSize: 20,
+              color: Colors.black,
             ),
+          ),
         ],
       ),
     ),
