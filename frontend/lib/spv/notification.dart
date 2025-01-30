@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:frontend/spv/working.dart';
 import 'package:frontend/spv/home.dart';
 import 'package:frontend/spv/account.dart';
@@ -55,7 +54,7 @@ class _NotificationState extends State<NotificationPage> {
         automaticallyImplyLeading: false,
         title: Text(
           'Notifikasi',
-          style: GoogleFonts.montserrat(
+          style: const TextStyle(
             color: Colors.black,
             fontSize: 20,
           ),
@@ -65,7 +64,7 @@ class _NotificationState extends State<NotificationPage> {
       ),
       backgroundColor: const Color(0xFFEAEAEA),
       body: ListView(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(screenWidth * 0.04), 
         children: [
           Container(
             decoration: BoxDecoration(
@@ -73,32 +72,32 @@ class _NotificationState extends State<NotificationPage> {
               borderRadius: BorderRadius.circular(12.0),
               border: Border.all(color: Colors.blue),
             ),
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(screenWidth * 0.04), 
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Icon(
                   Icons.info,
                   color: Colors.blue,
-                  size: 24.0,
+                  size: screenWidth * 0.06,
                 ),
-                SizedBox(width: 12.0),
+                SizedBox(width: screenWidth * 0.03),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Informasi!',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.blue,
                           fontSize: 16.0,
                         ),
                       ),
-                      SizedBox(height: 4.0),
+                      SizedBox(height: screenHeight * 0.01),
                       Text(
                         'Jam kerja pegawai berlangsung setiap hari kerja mulai pukul 08.00 pagi hingga 17.00 sore. Mohon pastikan semua keperluan administratif atau komunikasi dilakukan dalam rentang waktu tersebut. Terima kasih.',
-                        style: TextStyle(fontSize: 14.0),
+                        style: const TextStyle(fontSize: 14.0),
                       ),
                     ],
                   ),
@@ -106,51 +105,59 @@ class _NotificationState extends State<NotificationPage> {
               ],
             ),
           ),
-          SizedBox(height: 24.0),
+          SizedBox(height: screenHeight * 0.03),
           // Notifikasi Hari Ini
           Text(
             'Hari ini',
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16.0,
             ),
           ),
-          SizedBox(height: 12.0),
+          SizedBox(height: screenHeight * 0.02),
           _buildNotificationCard(
             icon: Icons.receipt_long,
             title: 'Laporan Ticketing',
             message:
                 'Laporan baru diterima: ID #12345ABC. Segera lakukan konfirmasi kepada pelapor.',
+            screenWidth: screenWidth,
+            screenHeight: screenHeight,
           ),
-          SizedBox(height: 12.0),
+          SizedBox(height: screenHeight * 0.02),
           _buildNotificationCard(
             icon: Icons.notifications,
             title: 'Notif',
             message:
                 'Catatan baru telah ditambahkan pada laporan #12345: "Pelapor membutuhkan tindakan cepat karena gangguan besar."',
+            screenWidth: screenWidth,
+            screenHeight: screenHeight,
           ),
-          SizedBox(height: 24.0),
+          SizedBox(height: screenHeight * 0.03),
           // Notifikasi 1 Hari Lalu
           Text(
             '1 Hari lalu',
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 16.0,
             ),
           ),
-          SizedBox(height: 12.0),
+          SizedBox(height: screenHeight * 0.02),
           _buildNotificationCard(
             icon: Icons.receipt_long,
             title: 'Laporan Ticketing',
             message:
                 'Laporan baru diterima: ID #12345ABC. Segera lakukan konfirmasi kepada pelapor.',
+            screenWidth: screenWidth,
+            screenHeight: screenHeight,
           ),
-          SizedBox(height: 12.0),
+          SizedBox(height: screenHeight * 0.02),
           _buildNotificationCard(
             icon: Icons.notifications,
             title: 'Notif',
             message:
                 'Catatan baru telah ditambahkan pada laporan #12345: "Pelapor membutuhkan tindakan cepat karena gangguan besar."',
+            screenWidth: screenWidth,
+            screenHeight: screenHeight,
           ),
         ],
       ),
@@ -165,34 +172,37 @@ class _NotificationState extends State<NotificationPage> {
     required IconData icon,
     required String title,
     required String message,
+    required double screenWidth,
+    required double screenHeight,
   }) {
     return Card(
+       color: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(screenWidth * 0.04),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Icon(
               icon,
               color: Colors.blue,
-              size: 24.0,
+              size: screenWidth * 0.06,
             ),
-            SizedBox(width: 12.0),
+            SizedBox(width: screenWidth * 0.03),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16.0,
                     ),
                   ),
-                  SizedBox(height: 4.0),
+                  SizedBox(height: screenHeight * 0.01),
                   Text(
                     message,
                     style: TextStyle(fontSize: 14.0, color: Colors.grey[700]),

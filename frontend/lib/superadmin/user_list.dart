@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/superadmin/team_list.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:frontend/spv/home.dart';
+import 'package:frontend/superadmin/home.dart';
+import 'package:frontend/superadmin/team_list.dart';
+import 'package:frontend/superadmin/add_user.dart';
+import 'package:frontend/superadmin/button_nav.dart';
+
 import 'package:frontend/spv/detail_ticket.dart';
 import 'package:frontend/spv/notification.dart';
 import 'package:frontend/spv/account.dart';
-import 'package:frontend/superadmin/button_nav.dart';
 
 class UserList extends StatefulWidget {
   const UserList({super.key});
@@ -25,7 +27,7 @@ class _UserListState extends State<UserList> {
     if (index == 0) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const DashboardSpv()),
+        MaterialPageRoute(builder: (context) => const DashboardSuperAdmin()),
       );
     }
     if (index == 1) {
@@ -53,7 +55,6 @@ class _UserListState extends State<UserList> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -71,8 +72,12 @@ class _UserListState extends State<UserList> {
             IconButton(
               icon: Icon(Icons.add, color: Colors.black),
               onPressed: () {
-                // Action when "Add" is pressed
-                // You can navigate to another screen or open a dialog
+                Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailTicket(),
+                ),
+              );
               },
             ),
           ],

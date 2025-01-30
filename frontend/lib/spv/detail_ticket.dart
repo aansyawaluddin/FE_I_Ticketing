@@ -5,13 +5,15 @@ class DetailTicket extends StatelessWidget {
   const DetailTicket({super.key});
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Detail Ticket',
           style: GoogleFonts.montserrat(
             color: Colors.black,
-            fontSize: 20,
+            fontSize: screenWidth * 0.05, // Menggunakan ukuran relatif
           ),
         ),
         backgroundColor: const Color(0xFFEAEAEA),
@@ -20,7 +22,8 @@ class DetailTicket extends StatelessWidget {
       ),
       backgroundColor: const Color(0xFFEAEAEA),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding:
+            EdgeInsets.all(screenWidth * 0.04), // Menggunakan padding relatif
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -28,60 +31,62 @@ class DetailTicket extends StatelessWidget {
               borderRadius: BorderRadius.circular(8.0),
               child: Image.asset(
                 'assets/images/detail_ticket.png',
-                height: 200,
+                height: screenHeight * 0.25,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(height: 16.0),
+            SizedBox(height: screenHeight * 0.02),
             Text(
               'ID Ticket',
               style: GoogleFonts.montserrat(
                 fontWeight: FontWeight.bold,
-                fontSize: 16.0,
+                fontSize: 18,
               ),
             ),
             Text(
               '#12345ABC',
-              style: GoogleFonts.montserrat(fontSize: 14.0),
+              style: GoogleFonts.montserrat(fontSize: screenWidth * 0.035),
             ),
-            SizedBox(height: 16.0),
+            SizedBox(height: screenHeight * 0.02),
             Text(
               'Jaringan Wifi tidak bisa diakses',
               style: GoogleFonts.montserrat(
                 fontWeight: FontWeight.bold,
-                fontSize: 18.0,
+                fontSize: 18,
               ),
             ),
+            SizedBox(height: screenHeight * 0.02),
             Text(
               'Makassar, 12/12/2023',
               style: GoogleFonts.montserrat(
-                fontSize: 14.0,
+                fontSize: screenWidth * 0.035,
                 color: Colors.grey[600],
               ),
             ),
             Text(
               'Dinas Komunikasi dan Informatika',
               style: GoogleFonts.montserrat(
-                fontSize: 14.0,
+                fontSize: screenWidth * 0.035,
                 color: Colors.grey[600],
               ),
             ),
-            SizedBox(height: 16.0),
+            SizedBox(height: screenHeight * 0.02),
             Text(
               'Catatan :',
               style: GoogleFonts.montserrat(
                 fontWeight: FontWeight.bold,
-                fontSize: 16.0,
+                fontSize: 16,
               ),
             ),
+            SizedBox(height: screenHeight * 0.02),
             Text(
               'Wifi pada dinas kominfo telah bermasalah selama 10 hari dan telah mengganggu pekerjaan.',
-              style: GoogleFonts.montserrat(fontSize: 14.0),
+              style: GoogleFonts.montserrat(fontSize: 16),
             ),
             Spacer(),
             SizedBox(
-              width: double.infinity,
+              width: screenWidth * 0.9,
               child: ElevatedButton.icon(
                 onPressed: () {},
                 icon: Icon(Icons.phone),
@@ -89,7 +94,7 @@ class DetailTicket extends StatelessWidget {
                   'Hubungi EOS',
                   style: GoogleFonts.montserrat(
                     fontWeight: FontWeight.bold,
-                    fontSize: 16.0,
+                    fontSize: 15,
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
@@ -98,7 +103,7 @@ class DetailTicket extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                  padding: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(screenWidth * 0.04),
                 ),
               ),
             ),

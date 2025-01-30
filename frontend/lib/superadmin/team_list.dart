@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:frontend/superadmin/home.dart';
 import 'package:frontend/superadmin/user_list.dart';
+import 'package:frontend/superadmin/button_nav.dart';
+
 import 'package:frontend/spv/notification.dart';
 import 'package:frontend/spv/account.dart';
-import 'package:frontend/superadmin/button_nav.dart';
 
 class TeamList extends StatefulWidget {
   const TeamList({super.key});
@@ -52,7 +53,6 @@ class _TeamListState extends State<TeamList> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
