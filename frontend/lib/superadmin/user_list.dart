@@ -57,14 +57,26 @@ class _UserListState extends State<UserList> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
-          "User List",
-          style: GoogleFonts.montserrat(
-            color: Colors.black,
-            fontSize: 20,
-          ),
-        ),
         backgroundColor: const Color(0xFFEAEAEA),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "User List",
+              style: GoogleFonts.montserrat(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+            ),
+            IconButton(
+              icon: Icon(Icons.add, color: Colors.black),
+              onPressed: () {
+                // Action when "Add" is pressed
+                // You can navigate to another screen or open a dialog
+              },
+            ),
+          ],
+        ),
       ),
       backgroundColor: const Color(0xFFEAEAEA),
       body: Padding(
@@ -84,7 +96,7 @@ class _UserListState extends State<UserList> {
                     tooltip: 'Nama User',
                   ),
                   DataColumn(
-                    label: _buildColumnTitle('Jabatan',''),
+                    label: _buildColumnTitle('Jabatan', ''),
                     numeric: false,
                     tooltip: "Jabatan",
                   ),
@@ -100,10 +112,11 @@ class _UserListState extends State<UserList> {
                   ),
                 ],
                 rows: [
-                  createRow('Muh. Rezky', 'Kepala Dinas', 'Belum', context),
-                  createRow('Akbar', 'Eos Telkom', 'Selesai', context),
-                  createRow('Reza Maulana', 'CS Diskominfo', 'Proses', context),
-                  createRow('Nasaruddin', 'Dukcapil', 'Proses', context),
+                  createRow('Muh. Rezky', 'Kepala Dinas', 'Admin', context),
+                  createRow('Akbar', 'EOS Telkom', 'EOS', context),
+                  createRow('Reza Maulana', 'CS Diskominfo', 'CS', context),
+                  createRow('Nasaruddin', 'Dispora', 'SKPD', context),
+                  createRow('Ammar', 'Diskominfo', 'Spv', context),
                 ],
               ),
             ],
@@ -146,12 +159,14 @@ class _UserListState extends State<UserList> {
     Color backgroundColor;
     Color textColor = Colors.white;
 
-    if (status == 'Belum') {
+    if (status == 'Admin') {
       backgroundColor = const Color(0xFF9A2420);
-    } else if (status == 'Selesai') {
+    } else if (status == 'EOS') {
       backgroundColor = const Color(0xFF42C25E);
-    } else if (status == 'Proses') {
+    } else if (status == 'CS') {
       backgroundColor = const Color(0xFFC2BD42);
+    } else if (status == 'SKPD' || status == 'Spv') {
+      backgroundColor = const Color(0xFF4282C2);
     } else {
       backgroundColor = Colors.transparent;
     }
