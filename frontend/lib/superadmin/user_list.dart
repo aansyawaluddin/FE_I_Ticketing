@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:frontend/superadmin/home.dart';
 import 'package:frontend/superadmin/performance.dart';
+import 'package:frontend/superadmin/detail_ticket.dart';
 import 'package:frontend/superadmin/add_user.dart';
 import 'package:frontend/superadmin/button_nav.dart';
 
-import 'package:frontend/spv/detail_ticket.dart';
 import 'package:frontend/spv/notification.dart';
 import 'package:frontend/spv/account.dart';
 
@@ -33,7 +33,7 @@ class _UserListState extends State<UserList> {
     if (index == 1) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const TeamList()),
+        MaterialPageRoute(builder: (context) => const Performance()),
       );
     } else if (index == 3) {
       Navigator.pushReplacement(

@@ -72,7 +72,6 @@ class _DashboardScreenState extends State<DashboardSpv> {
             ),
           ),
         ),
-        // Main content
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
@@ -112,7 +111,7 @@ class _DashboardScreenState extends State<DashboardSpv> {
                       _buildInfoCard('Over Due', 25,'assets/icons/overdue.png', screenWidth),
                     ],
                   ),
-                  SizedBox(height: screenHeight * 0.02),
+                  SizedBox(height: screenHeight * 0.035),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Text(
@@ -256,6 +255,7 @@ class _DashboardScreenState extends State<DashboardSpv> {
 }
 
 Widget _buildInfoCard(String title, int count, String iconPath, double screenWidth) {
+  final iconSize = screenWidth * 0.04;
   return Card(
     elevation: 0.5,
     color: const Color.fromARGB(255, 253, 251, 251),
@@ -290,8 +290,8 @@ Widget _buildInfoCard(String title, int count, String iconPath, double screenWid
               if (iconPath.isNotEmpty)
                 Image.asset(
                   iconPath,
-                  width: 20,
-                  height: 20,
+                  width: iconSize,
+                  height: iconSize,
                 ),
             ],
           ),
@@ -307,7 +307,6 @@ Widget _buildInfoCard(String title, int count, String iconPath, double screenWid
     ),
   );
 }
-
 
 class LinePainter extends CustomPainter {
   @override

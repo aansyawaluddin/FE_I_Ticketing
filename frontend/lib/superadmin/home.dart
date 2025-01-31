@@ -3,9 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:frontend/superadmin/performance.dart';
 import 'package:frontend/superadmin/user_list.dart';
+import 'package:frontend/superadmin/notification.dart';
 import 'package:frontend/superadmin/button_nav.dart';
-
-import 'package:frontend/spv/notification.dart';
 import 'package:frontend/spv/account.dart';
 
 class MyApp extends StatelessWidget {
@@ -36,7 +35,7 @@ class _DashboardScreenState extends State<DashboardSuperAdmin> {
     if (index == 1) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const TeamList()),
+        MaterialPageRoute(builder: (context) => const Performance()),
       );
     } if (index == 2) {
       Navigator.push(
@@ -116,7 +115,7 @@ class _DashboardScreenState extends State<DashboardSuperAdmin> {
                       _buildInfoCard('Over Due', 25,'assets/icons/overdue.png', screenWidth),
                     ],
                   ),
-                  SizedBox(height: screenHeight * 0.02),
+                  SizedBox(height: screenHeight * 0.035),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Text(
@@ -260,6 +259,7 @@ class _DashboardScreenState extends State<DashboardSuperAdmin> {
 }
 
 Widget _buildInfoCard(String title, int count, String iconPath, double screenWidth) {
+  final iconSize = screenWidth * 0.04;
   return Card(
     elevation: 0.5,
     color: const Color.fromARGB(255, 253, 251, 251),
@@ -294,8 +294,8 @@ Widget _buildInfoCard(String title, int count, String iconPath, double screenWid
               if (iconPath.isNotEmpty)
                 Image.asset(
                   iconPath,
-                  width: 20,
-                  height: 20,
+                  width: iconSize,
+                  height: iconSize,
                 ),
             ],
           ),
