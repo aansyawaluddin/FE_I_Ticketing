@@ -40,4 +40,6 @@ flutter:
     - assets/icons/todo.png
     - assets/icons/overdue.png
     - assets/icons/check_circle.png
+    - assets/icons/drop.png
+    - assets/icons/verifikasi.png
 

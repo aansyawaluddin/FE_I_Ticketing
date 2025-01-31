@@ -214,7 +214,8 @@ class _AccountPageState extends State<AccountPage> {
   }
 
   void _showEditDialog(String currentValue, Function(String)? onChanged) {
-    TextEditingController controller = TextEditingController(text: currentValue);
+    TextEditingController controller =
+        TextEditingController(text: currentValue);
     showDialog(
       context: context,
       builder: (BuildContext context) {

@@ -75,7 +75,7 @@ class _UserListState extends State<UserList> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DetailTicket(),
+                    builder: (context) => AddUser(),
                   ),
                 );
               },
