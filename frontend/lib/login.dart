@@ -101,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Image.asset(
                       'assets/icons/logo.png',
-                      height: 100,
+                      height: 130,
                     ),
                     const SizedBox(height: 20),
                     Text(
@@ -139,7 +139,9 @@ class _LoginPageState extends State<LoginPage> {
                         labelStyle: GoogleFonts.montserrat(),
                         suffixIcon: IconButton(
                           icon: Icon(
-                            _isObscure ? Icons.visibility_off : Icons.visibility,
+                            _isObscure
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                           ),
                           onPressed: () {
                             setState(() {
@@ -166,15 +168,15 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         child: _isLoading
                             ? const CircularProgressIndicator(
-                            color: Colors.white)
+                                color: Colors.white)
                             : Text(
-                          'Masuk',
-                          style: GoogleFonts.montserrat(
-                            fontSize: 16,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                                'Masuk',
+                                style: GoogleFonts.montserrat(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                       ),
                     ),
                   ],

@@ -5,8 +5,6 @@ import 'package:frontend/superadmin/worklist.dart';
 import 'package:frontend/superadmin/user_list.dart';
 import 'package:frontend/superadmin/button_nav.dart';
 
-
-
 import 'package:frontend/spv/notification.dart';
 import 'package:frontend/spv/account.dart';
 
@@ -102,10 +100,10 @@ class _TeamListState extends State<TeamList> {
                   ),
                 ],
                 rows: [
-                  createRow('Muh. Rezky', 25, 0.75, "Netral"),
-                  createRow('Akbar', 10, 0.50, "Positif"),
-                  createRow('Reza Maulana', 25, 0.25, "Negatif"),
-                  createRow('Nasaruddin', 25, 0.35, "Netral"),
+                  createRow(context, 'Muh. Rezky', 25, 0.75, "Netral"),
+                  createRow(context, 'Akbar', 10, 0.50, "Positif"),
+                  createRow(context, 'Reza Maulana', 25, 0.25, "Negatif"),
+                  createRow(context, 'Nasaruddin', 25, 0.35, "Netral"),
                 ],
               ),
             ],
@@ -143,8 +141,8 @@ class _TeamListState extends State<TeamList> {
     );
   }
 
-  static DataRow createRow(
-      String name, int allTicket, double progressTicket, String status) {
+  DataRow createRow(BuildContext context, String name, int allTicket,
+      double progressTicket, String status) {
     Color backgroundColor;
     Color textColor = Colors.white;
 
@@ -161,16 +159,27 @@ class _TeamListState extends State<TeamList> {
     return DataRow(
       cells: [
         DataCell(
-          Align(
-            alignment: Alignment.center,
-            child: Container(
-              width: 75,
-              padding: const EdgeInsets.symmetric(vertical: 6.0),
-              child: Text(
-                name,
-                style: GoogleFonts.montserrat(
-                  color: Colors.black,
-                  fontSize: 14,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => WorkingList(teamName: name),
+                ),
+              );
+            },
+            child: Align(
+              alignment: Alignment.center,
+              child: Container(
+                width: 90,
+                padding: const EdgeInsets.symmetric(vertical: 6.0),
+                child: Text(
+                  name,
+                  style: GoogleFonts.montserrat(
+                    color: Colors.black,
+                    fontSize: 14,
+                  ),
+                  textAlign: TextAlign.start,
                 ),
               ),
             ),
@@ -180,14 +189,15 @@ class _TeamListState extends State<TeamList> {
           Align(
             alignment: Alignment.center,
             child: Container(
-              width: 62,
-              padding: const EdgeInsets.symmetric(vertical: 6.0),
+              width: 40,
+              padding: const EdgeInsets.symmetric(vertical: 4.0),
               child: Text(
                 allTicket.toString(),
                 style: GoogleFonts.montserrat(
                   color: Colors.black,
                   fontSize: 14,
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
           ),
@@ -196,7 +206,7 @@ class _TeamListState extends State<TeamList> {
           Align(
             alignment: Alignment.center,
             child: Container(
-              width: 62,
+              width: 70,
               padding: const EdgeInsets.symmetric(vertical: 6.0),
               child: Text(
                 '${(progressTicket * 100).toStringAsFixed(0)}%',
@@ -204,6 +214,7 @@ class _TeamListState extends State<TeamList> {
                   color: Colors.black,
                   fontSize: 14,
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
           ),
@@ -212,7 +223,7 @@ class _TeamListState extends State<TeamList> {
           Align(
             alignment: Alignment.center,
             child: Container(
-              width: 62,
+              width: 65,
               padding:
                   const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
               decoration: BoxDecoration(
