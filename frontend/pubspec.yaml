@@ -35,9 +35,9 @@ flutter:
     - assets/icons/user_list.png
     - assets/icons/team_list.png
     - assets/icons/performance.png
-
     - assets/icons/allticket.png
     - assets/icons/solve.png
     - assets/icons/todo.png
     - assets/icons/overdue.png
+    - assets/icons/check_circle.png
 

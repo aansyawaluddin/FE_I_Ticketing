@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:frontend/spv/detail_ticket.dart';
+import 'package:frontend/superadmin/detail_ticket.dart';
 
 class WorkingList extends StatefulWidget {
   final String teamName;
@@ -31,6 +31,7 @@ class _WorkingState extends State<WorkingList> {
           style: GoogleFonts.montserrat(
             color: Colors.black,
             fontSize: 20,
+            fontWeight: FontWeight.bold,
           ),
         ),
         backgroundColor: const Color(0xFFEAEAEA),

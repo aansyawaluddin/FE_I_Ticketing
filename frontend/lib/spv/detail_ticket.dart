@@ -13,7 +13,7 @@ class DetailTicket extends StatelessWidget {
           'Detail Ticket',
           style: GoogleFonts.montserrat(
             color: Colors.black,
-            fontSize: screenWidth * 0.05, // Menggunakan ukuran relatif
+            fontSize: screenWidth * 0.05, 
           ),
         ),
         backgroundColor: const Color(0xFFEAEAEA),
@@ -23,7 +23,7 @@ class DetailTicket extends StatelessWidget {
       backgroundColor: const Color(0xFFEAEAEA),
       body: Padding(
         padding:
-            EdgeInsets.all(screenWidth * 0.04), // Menggunakan padding relatif
+            EdgeInsets.all(screenWidth * 0.04), 
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
