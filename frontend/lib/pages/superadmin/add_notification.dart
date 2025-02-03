@@ -14,13 +14,14 @@ class _AddNotification extends State<AddNotification> {
   TextEditingController messageController = TextEditingController();
   FocusNode messageFocusNode = FocusNode();
 
-  List<String> notificationTypes = ["Informasi!", "Laporan Ticketing", "Notif"];
-
   void _showCreateNotificationPopup() {
     showPopupCreateNotification(context);
   }
 
+  List<String> notificationTypes = ["Informasi!", "Laporan Ticketing", "Notif"];
+
   OverlayEntry? overlayEntry;
+  final LayerLink _layerLink = LayerLink();
   final GlobalKey _dropdownKey = GlobalKey();
 
   void showDropdown() {
@@ -39,7 +40,7 @@ class _AddNotification extends State<AddNotification> {
           color: Colors.transparent,
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Color(0xFFEAEAEA),
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
@@ -54,24 +55,25 @@ class _AddNotification extends State<AddNotification> {
               mainAxisSize: MainAxisSize.min,
               children: notificationTypes.map((type) {
                 bool isSelected = type == selectedNotificationType;
-                return InkWell(
-                  onTap: () {
-                    setState(() {
-                      selectedNotificationType = type;
-                    });
-                    hideDropdown();
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-                    decoration: BoxDecoration(
-                      color: isSelected ? Color(0xFFCECECA) : Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
+                return Container(
+                  decoration: BoxDecoration(
+                    color: isSelected
+                        ? Color(0xFFCECECA)
+                        : Color(0xFFEAEAEA),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: ListTile(
+                    title: Text(
                       type,
                       style: GoogleFonts.montserrat(
                           color: Colors.black, fontWeight: FontWeight.w500),
                     ),
+                    onTap: () {
+                      setState(() {
+                        selectedNotificationType = type;
+                      });
+                      hideDropdown();
+                    },
                   ),
                 );
               }).toList(),
@@ -102,7 +104,6 @@ class _AddNotification extends State<AddNotification> {
   @override
   void dispose() {
     messageFocusNode.dispose();
-    messageController.dispose();
     super.dispose();
   }
 
@@ -110,12 +111,11 @@ class _AddNotification extends State<AddNotification> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TopBar(
-        backButton: true,
-        content: Padding(
-          padding: EdgeInsets.only(left: 0),
-          child: const Text("Notification"),
-        ),
-      ),
+          backButton: true,
+          content: Padding(
+            padding: EdgeInsets.only(left: 0),
+            child: const Text("Notication"),
+          )),
       backgroundColor: const Color(0xFFEAEAEA),
       body: SingleChildScrollView(
         child: Padding(
@@ -129,60 +129,84 @@ class _AddNotification extends State<AddNotification> {
                       color: Colors.black,
                       fontWeight: FontWeight.w600)),
               SizedBox(height: 13),
-              GestureDetector(
-                key: _dropdownKey,
-                onTap: () {
-                  overlayEntry == null ? showDropdown() : hideDropdown();
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.grey),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        selectedNotificationType ?? "Jenis Notifikasi",
-                        style: GoogleFonts.montserrat(
-                          color: selectedNotificationType == null
-                              ? Colors.grey
-                              : Colors.black,
-                          fontWeight: FontWeight.w600,
+
+              CompositedTransformTarget(
+                link: _layerLink,
+                child: GestureDetector(
+                  key: _dropdownKey,
+                  onTap: () {
+                    if (overlayEntry == null) {
+                      showDropdown();
+                    } else {
+                      hideDropdown();
+                    }
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEAEAEA),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          selectedNotificationType ?? "Jenis Notifikasi",
+                          style: GoogleFonts.montserrat(
+                            color: selectedNotificationType == null
+                                ? Colors.grey
+                                : Colors.black,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      Icon(Icons.arrow_drop_down),
-                    ],
+                        Icon(Icons.arrow_drop_down),
+                      ],
+                    ),
                   ),
                 ),
               ),
+
               SizedBox(height: 20),
+
+              // Input Pesan
               TextField(
                 controller: messageController,
                 focusNode: messageFocusNode,
-                maxLines: 5,
+                maxLines: 12,
                 decoration: InputDecoration(
                   hintText: "Isi",
                   hintStyle: GoogleFonts.montserrat(
                       color: Colors.grey, fontWeight: FontWeight.w600),
                   filled: true,
-                  fillColor: Colors.white,
+                  fillColor: Color(0xFFEAEAEA),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
+                onTap: () {
+                  hideDropdown();
+                },
               ),
+
               SizedBox(height: 30),
+
+              // Tombol Kirim Notifikasi
               SizedBox(
                 width: double.infinity,
-                height: 50,
+                height: 55,
                 child: ElevatedButton(
                   onPressed: () {
                     if (selectedNotificationType != null &&
                         messageController.text.isNotEmpty) {
-                      _showCreateNotificationPopup();
+                      // Menampilkan pop-up notifikasi berhasil
+                      showPopupCreateNotification(context);
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                            content: Text("Notifikasi berhasil ditambahkan",
+                                style: GoogleFonts.montserrat())),
+                      );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -197,6 +221,7 @@ class _AddNotification extends State<AddNotification> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
+                    padding: EdgeInsets.symmetric(horizontal: 24),
                   ),
                   child: Text(
                     "Tambahkan Notifikasi",
