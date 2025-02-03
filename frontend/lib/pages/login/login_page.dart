@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/home.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:frontend/pages/spv/home.dart';
 import 'package:frontend/pages/superadmin/home.dart';
 
 class LoginPage extends StatefulWidget {
@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
     if (email == _validEmailSpv && password == _validPasswordSpv) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const DashboardSpv()),
+        MaterialPageRoute(builder: (context) =>  HomeScreen()),
       );
     } else if (email == _validEmailSuperAdmin &&
         password == _validPasswordSuperAdmin) {

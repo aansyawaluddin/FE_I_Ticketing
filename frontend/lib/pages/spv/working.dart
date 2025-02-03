@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:frontend/pages/spv/home.dart';
 import 'package:frontend/pages/spv/detail_ticket.dart';
-import 'package:frontend/pages/spv/notification.dart';
-import 'package:frontend/pages/spv/account.dart';
-import 'package:frontend/widgets/search.dart';
-import 'package:frontend/pages/spv/button_nav.dart';
 
 class Working extends StatefulWidget {
   const Working({super.key});
@@ -15,37 +10,6 @@ class Working extends StatefulWidget {
 }
 
 class _WorkingState extends State<Working> {
-  int _selectedIndex = 1;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-
-    if (index == 0) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const DashboardSpv()),
-      );
-    } else if (index == 2) {
-      showSearchPopup(context);
-    } else if (index == 3) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const NotificationPage()),
-      );
-    } else if (index == 4) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const AccountPage()),
-      );
-    } else {
-      setState(() {
-        _selectedIndex = index;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -104,10 +68,6 @@ class _WorkingState extends State<Working> {
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNav(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
       ),
     );
   }

@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:frontend/pages/spv/working.dart';
-import 'package:frontend/pages/spv/notification.dart';
-import 'package:frontend/pages/spv/account.dart';
-import 'package:frontend/widgets/search.dart';
-import 'package:frontend/pages/spv/button_nav.dart';
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -29,32 +25,6 @@ class DashboardSpv extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardSpv> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    if (index == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const Working()),
-      );
-    } else if (index == 2) {
-      showSearchPopup(context);
-    } else if (index == 3) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const NotificationPage()),
-      );
-    } else if (index == 4) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const AccountPage()),
-      );
-    } else {
-      setState(() {
-        _selectedIndex = index;
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -243,10 +213,6 @@ class _DashboardScreenState extends State<DashboardSpv> {
                 ],
               ),
             ),
-          ),
-          bottomNavigationBar: BottomNav(
-            selectedIndex: _selectedIndex,
-            onItemTapped: _onItemTapped,
           ),
         ),
       ],

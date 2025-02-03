@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:frontend/pages/login/login_page.dart';
-import 'package:frontend/pages/spv/home.dart';
-import 'package:frontend/pages/spv/working.dart';
-import 'package:frontend/pages/spv/notification.dart';
-import 'package:frontend/widgets/search.dart';
-import 'package:frontend/pages/spv/button_nav.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -15,39 +10,11 @@ class AccountPage extends StatefulWidget {
 }
 
 class _AccountPageState extends State<AccountPage> {
-  int _selectedIndex = 4;
   String name = 'Reza Maulana';
   String email = 'rezamaulana@gmail.com';
   String skpd = 'SKPD';
   String phone = '+62 82333421454';
   String username = 'supervisor1';
-
-  void _onItemTapped(int index) {
-    if (index != _selectedIndex) {
-      setState(() {
-        _selectedIndex = index;
-      });
-
-      if (index == 0) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const DashboardSpv()),
-        );
-      } else if (index == 1) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const Working()),
-        );
-      } else if (index == 2) {
-        showSearchPopup(context);
-      } else if (index == 3) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const NotificationPage()),
-        );
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -172,10 +139,6 @@ class _AccountPageState extends State<AccountPage> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNav(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
       ),
     );
   }

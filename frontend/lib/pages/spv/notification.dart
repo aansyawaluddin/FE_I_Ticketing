@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/pages/spv/working.dart';
-import 'package:frontend/pages/spv/home.dart';
-import 'package:frontend/pages/spv/account.dart';
-import 'package:frontend/widgets/search.dart';
-import 'package:frontend/pages/spv/button_nav.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NotificationPage extends StatefulWidget {
@@ -14,36 +9,6 @@ class NotificationPage extends StatefulWidget {
 }
 
 class _NotificationState extends State<NotificationPage> {
-  int _selectedIndex = 3;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-
-    if (index == 0) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const DashboardSpv()),
-      );
-    } else if (index == 1) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const Working()),
-      );
-    } else if (index == 2) {
-      showSearchPopup(context);
-    } else if (index == 4) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const AccountPage()),
-      );
-    } else {
-      setState(() {
-        _selectedIndex = index;
-      });
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -162,10 +127,6 @@ class _NotificationState extends State<NotificationPage> {
             screenHeight: screenHeight,
           ),
         ],
-      ),
-      bottomNavigationBar: BottomNav(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
       ),
     );
   }
