@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/superadmin/home.dart';
-import 'package:frontend/superadmin/performance.dart';
-import 'package:frontend/spv/account.dart';
-import 'package:frontend/superadmin/button_nav.dart';
-import 'package:frontend/superadmin/user_list.dart';
+import 'package:frontend/pages/spv/working.dart';
+import 'package:frontend/pages/spv/home.dart';
+import 'package:frontend/pages/spv/account.dart';
+import 'package:frontend/widgets/search.dart';
+import 'package:frontend/pages/spv/button_nav.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});
@@ -23,18 +24,15 @@ class _NotificationState extends State<NotificationPage> {
     if (index == 0) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const DashboardSuperAdmin()),
+        MaterialPageRoute(builder: (context) => const DashboardSpv()),
       );
     } else if (index == 1) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const Performance()),
+        MaterialPageRoute(builder: (context) => const Working()),
       );
     } else if (index == 2) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const UserList()),
-      );
+      showSearchPopup(context);
     } else if (index == 4) {
       Navigator.pushReplacement(
         context,
@@ -57,8 +55,9 @@ class _NotificationState extends State<NotificationPage> {
         automaticallyImplyLeading: false,
         title: Text(
           'Notifikasi',
-          style: const TextStyle(
+          style: GoogleFonts.montserrat(
             color: Colors.black,
+            fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
         ),
@@ -67,15 +66,15 @@ class _NotificationState extends State<NotificationPage> {
       ),
       backgroundColor: const Color(0xFFEAEAEA),
       body: ListView(
-        padding: EdgeInsets.all(screenWidth * 0.04),
+        padding: EdgeInsets.all(screenWidth * 0.04), 
         children: [
           Container(
             decoration: BoxDecoration(
-              color: Colors.blue[100],
+              color: Color(0xFF8FB7DF),
               borderRadius: BorderRadius.circular(12.0),
-              border: Border.all(color: Colors.blue),
+              border: Border.all(color: Color(0xFF4282C2)),
             ),
-            padding: EdgeInsets.all(screenWidth * 0.04),
+            padding: EdgeInsets.all(screenWidth * 0.04), 
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -91,16 +90,16 @@ class _NotificationState extends State<NotificationPage> {
                     children: [
                       Text(
                         'Informasi!',
-                        style: const TextStyle(
+                        style: GoogleFonts.montserrat(
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                          color: Colors.white,
                           fontSize: 16.0,
                         ),
                       ),
                       SizedBox(height: screenHeight * 0.01),
                       Text(
                         'Jam kerja pegawai berlangsung setiap hari kerja mulai pukul 08.00 pagi hingga 17.00 sore. Mohon pastikan semua keperluan administratif atau komunikasi dilakukan dalam rentang waktu tersebut. Terima kasih.',
-                        style: const TextStyle(fontSize: 14.0),
+                        style: GoogleFonts.montserrat(fontSize: 14.0, color: Colors.white,),
                       ),
                     ],
                   ),
@@ -112,7 +111,7 @@ class _NotificationState extends State<NotificationPage> {
           // Notifikasi Hari Ini
           Text(
             'Hari ini',
-            style: const TextStyle(
+            style: GoogleFonts.montserrat(
               fontWeight: FontWeight.bold,
               fontSize: 16.0,
             ),
@@ -139,7 +138,7 @@ class _NotificationState extends State<NotificationPage> {
           // Notifikasi 1 Hari Lalu
           Text(
             '1 Hari lalu',
-            style: const TextStyle(
+            style: GoogleFonts.montserrat(
               fontWeight: FontWeight.bold,
               fontSize: 16.0,
             ),
@@ -179,7 +178,7 @@ class _NotificationState extends State<NotificationPage> {
     required double screenHeight,
   }) {
     return Card(
-      color: Colors.white,
+       color: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
       ),
@@ -200,7 +199,7 @@ class _NotificationState extends State<NotificationPage> {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
+                    style: GoogleFonts.montserrat(
                       fontWeight: FontWeight.bold,
                       fontSize: 16.0,
                     ),
@@ -208,7 +207,7 @@ class _NotificationState extends State<NotificationPage> {
                   SizedBox(height: screenHeight * 0.01),
                   Text(
                     message,
-                    style: TextStyle(fontSize: 14.0, color: Colors.grey[700]),
+                    style: GoogleFonts.montserrat(fontSize: 14.0, color: Colors.grey[700]),
                   ),
                 ],
               ),

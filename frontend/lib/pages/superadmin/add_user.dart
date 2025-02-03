@@ -115,6 +115,8 @@ class _AddUserState extends State<AddUser> {
 }
 
 class PopupCreateUser extends StatelessWidget {
+  const PopupCreateUser({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

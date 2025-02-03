@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:frontend/spv/home.dart';
-import 'package:frontend/spv/detail_ticket.dart';
-import 'package:frontend/spv/notification.dart';
-import 'package:frontend/spv/account.dart';
-import 'package:frontend/spv/search.dart';
-import 'package:frontend/spv/button_nav.dart';
+import 'package:frontend/pages/superadmin/home.dart';
+import 'package:frontend/pages/superadmin/performance.dart';
+import 'package:frontend/pages/superadmin/detail_ticket.dart';
+import 'package:frontend/pages/superadmin/add_user.dart';
+import 'package:frontend/pages/superadmin/notification.dart';
+import 'package:frontend/pages/superadmin/button_nav.dart';
 
-class Working extends StatefulWidget {
-  const Working({super.key});
+import 'package:frontend/pages/superadmin/account.dart';
+
+class UserList extends StatefulWidget {
+  const UserList({super.key});
 
   @override
-  _WorkingState createState() => _WorkingState();
+  _UserListState createState() => _UserListState();
 }
 
-class _WorkingState extends State<Working> {
-  int _selectedIndex = 1;
+class _UserListState extends State<UserList> {
+  int _selectedIndex = 2;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -25,10 +27,14 @@ class _WorkingState extends State<Working> {
     if (index == 0) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const DashboardSpv()),
+        MaterialPageRoute(builder: (context) => const DashboardSuperAdmin()),
       );
-    } else if (index == 2) {
-      showSearchPopup(context);
+    }
+    if (index == 1) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Performance()),
+      );
     } else if (index == 3) {
       Navigator.pushReplacement(
         context,
@@ -52,14 +58,30 @@ class _WorkingState extends State<Working> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
-          "Working List",
-          style: GoogleFonts.montserrat(
-            color: Colors.black,
-            fontSize: 20,
-          ),
-        ),
         backgroundColor: const Color(0xFFEAEAEA),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "User List",
+              style: GoogleFonts.montserrat(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+            ),
+            IconButton(
+              icon: Icon(Icons.add, color: Colors.black),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddUser(),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
       backgroundColor: const Color(0xFFEAEAEA),
       body: Padding(
@@ -74,31 +96,32 @@ class _WorkingState extends State<Working> {
                 headingRowHeight: 60.0,
                 columns: [
                   DataColumn(
-                    label: _buildColumnTitle('Nama', 'Tim EOS'),
+                    label: _buildColumnTitle('Nama', 'User'),
                     numeric: false,
-                    tooltip: 'Nama\nTim EOS',
+                    tooltip: 'Nama User',
                   ),
                   DataColumn(
-                    label: _buildColumnTitle('Dinas', 'Pelapor'),
+                    label: _buildColumnTitle('Jabatan', ''),
                     numeric: false,
-                    tooltip: "Dinas Pelapor",
+                    tooltip: "Jabatan",
                   ),
                   DataColumn(
-                    label: _buildColumnTitle('Progres', 'Ticket'),
+                    label: _buildColumnTitle('Role', 'User'),
                     numeric: false,
-                    tooltip: "Progres Ticket",
+                    tooltip: "Role User",
                   ),
                   DataColumn(
-                    label: _buildColumnTitle('Ticket', 'Detail'),
+                    label: _buildColumnTitle('View', 'Detail'),
                     numeric: false,
-                    tooltip: "Ticket Detail",
+                    tooltip: "View Detail",
                   ),
                 ],
                 rows: [
-                  createRow('Muh. Rezky', 'Dispora', 'Belum', context),
-                  createRow('Akbar', 'Diskominfo', 'Selesai', context),
-                  createRow('Reza Maulana', 'Dispora', 'Proses', context),
-                  createRow('Nasaruddin', 'Dukcapil', 'Proses', context),
+                  createRow('Muh. Rezky', 'Kepala Dinas', 'Admin', context),
+                  createRow('Akbar', 'EOS Telkom', 'EOS', context),
+                  createRow('Reza Maulana', 'CS Diskominfo', 'CS', context),
+                  createRow('Nasaruddin', 'Dispora', 'SKPD', context),
+                  createRow('Ammar', 'Diskominfo', 'Spv', context),
                 ],
               ),
             ],
@@ -137,16 +160,18 @@ class _WorkingState extends State<Working> {
   }
 
   static DataRow createRow(
-      String name, String department, String status, BuildContext context) {
+      String name, String jabatan, String status, BuildContext context) {
     Color backgroundColor;
     Color textColor = Colors.white;
 
-    if (status == 'Belum') {
+    if (status == 'Admin') {
       backgroundColor = const Color(0xFF9A2420);
-    } else if (status == 'Selesai') {
+    } else if (status == 'EOS') {
       backgroundColor = const Color(0xFF42C25E);
-    } else if (status == 'Proses') {
+    } else if (status == 'CS') {
       backgroundColor = const Color(0xFFC2BD42);
+    } else if (status == 'SKPD' || status == 'Spv') {
+      backgroundColor = const Color(0xFF4282C2);
     } else {
       backgroundColor = Colors.transparent;
     }
@@ -171,7 +196,7 @@ class _WorkingState extends State<Working> {
             width: 75,
             padding: const EdgeInsets.symmetric(vertical: 6.0),
             child: Text(
-              department,
+              jabatan,
               style: GoogleFonts.montserrat(
                 color: Colors.black,
                 fontSize: 14,
@@ -182,7 +207,7 @@ class _WorkingState extends State<Working> {
         DataCell(
           Center(
             child: Container(
-              width: 65,
+              width: 70,
               padding:
                   const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
               decoration: BoxDecoration(

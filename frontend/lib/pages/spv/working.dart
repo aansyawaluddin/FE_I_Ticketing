@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:frontend/superadmin/home.dart';
-import 'package:frontend/superadmin/performance.dart';
-import 'package:frontend/superadmin/detail_ticket.dart';
-import 'package:frontend/superadmin/add_user.dart';
-import 'package:frontend/superadmin/button_nav.dart';
+import 'package:frontend/pages/spv/home.dart';
+import 'package:frontend/pages/spv/detail_ticket.dart';
+import 'package:frontend/pages/spv/notification.dart';
+import 'package:frontend/pages/spv/account.dart';
+import 'package:frontend/widgets/search.dart';
+import 'package:frontend/pages/spv/button_nav.dart';
 
-import 'package:frontend/spv/notification.dart';
-import 'package:frontend/spv/account.dart';
-
-class UserList extends StatefulWidget {
-  const UserList({super.key});
+class Working extends StatefulWidget {
+  const Working({super.key});
 
   @override
-  _UserListState createState() => _UserListState();
+  _WorkingState createState() => _WorkingState();
 }
 
-class _UserListState extends State<UserList> {
-  int _selectedIndex = 2;
+class _WorkingState extends State<Working> {
+  int _selectedIndex = 1;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -27,14 +25,10 @@ class _UserListState extends State<UserList> {
     if (index == 0) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const DashboardSuperAdmin()),
+        MaterialPageRoute(builder: (context) => const DashboardSpv()),
       );
-    }
-    if (index == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const Performance()),
-      );
+    } else if (index == 2) {
+      showSearchPopup(context);
     } else if (index == 3) {
       Navigator.pushReplacement(
         context,
@@ -58,30 +52,14 @@ class _UserListState extends State<UserList> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFFEAEAEA),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "User List",
-              style: GoogleFonts.montserrat(
-                color: Colors.black,
-                fontSize: 20,
-              ),
-            ),
-            IconButton(
-              icon: Icon(Icons.add, color: Colors.black),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddUser(),
-                  ),
-                );
-              },
-            ),
-          ],
+        title: Text(
+          "Working List",
+          style: GoogleFonts.montserrat(
+            color: Colors.black,
+            fontSize: 20,
+          ),
         ),
+        backgroundColor: const Color(0xFFEAEAEA),
       ),
       backgroundColor: const Color(0xFFEAEAEA),
       body: Padding(
@@ -96,32 +74,31 @@ class _UserListState extends State<UserList> {
                 headingRowHeight: 60.0,
                 columns: [
                   DataColumn(
-                    label: _buildColumnTitle('Nama', 'User'),
+                    label: _buildColumnTitle('Nama', 'Tim EOS'),
                     numeric: false,
-                    tooltip: 'Nama User',
+                    tooltip: 'Nama\nTim EOS',
                   ),
                   DataColumn(
-                    label: _buildColumnTitle('Jabatan', ''),
+                    label: _buildColumnTitle('Dinas', 'Pelapor'),
                     numeric: false,
-                    tooltip: "Jabatan",
+                    tooltip: "Dinas Pelapor",
                   ),
                   DataColumn(
-                    label: _buildColumnTitle('Role', 'User'),
+                    label: _buildColumnTitle('Progres', 'Ticket'),
                     numeric: false,
-                    tooltip: "Role User",
+                    tooltip: "Progres Ticket",
                   ),
                   DataColumn(
-                    label: _buildColumnTitle('View', 'Detail'),
+                    label: _buildColumnTitle('Ticket', 'Detail'),
                     numeric: false,
-                    tooltip: "View Detail",
+                    tooltip: "Ticket Detail",
                   ),
                 ],
                 rows: [
-                  createRow('Muh. Rezky', 'Kepala Dinas', 'Admin', context),
-                  createRow('Akbar', 'EOS Telkom', 'EOS', context),
-                  createRow('Reza Maulana', 'CS Diskominfo', 'CS', context),
-                  createRow('Nasaruddin', 'Dispora', 'SKPD', context),
-                  createRow('Ammar', 'Diskominfo', 'Spv', context),
+                  createRow('Muh. Rezky', 'Dispora', 'Belum', context),
+                  createRow('Akbar', 'Diskominfo', 'Selesai', context),
+                  createRow('Reza Maulana', 'Dispora', 'Proses', context),
+                  createRow('Nasaruddin', 'Dukcapil', 'Proses', context),
                 ],
               ),
             ],
@@ -160,18 +137,16 @@ class _UserListState extends State<UserList> {
   }
 
   static DataRow createRow(
-      String name, String jabatan, String status, BuildContext context) {
+      String name, String department, String status, BuildContext context) {
     Color backgroundColor;
     Color textColor = Colors.white;
 
-    if (status == 'Admin') {
+    if (status == 'Belum') {
       backgroundColor = const Color(0xFF9A2420);
-    } else if (status == 'EOS') {
+    } else if (status == 'Selesai') {
       backgroundColor = const Color(0xFF42C25E);
-    } else if (status == 'CS') {
+    } else if (status == 'Proses') {
       backgroundColor = const Color(0xFFC2BD42);
-    } else if (status == 'SKPD' || status == 'Spv') {
-      backgroundColor = const Color(0xFF4282C2);
     } else {
       backgroundColor = Colors.transparent;
     }
@@ -196,7 +171,7 @@ class _UserListState extends State<UserList> {
             width: 75,
             padding: const EdgeInsets.symmetric(vertical: 6.0),
             child: Text(
-              jabatan,
+              department,
               style: GoogleFonts.montserrat(
                 color: Colors.black,
                 fontSize: 14,
@@ -207,7 +182,7 @@ class _UserListState extends State<UserList> {
         DataCell(
           Center(
             child: Container(
-              width: 70,
+              width: 65,
               padding:
                   const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
               decoration: BoxDecoration(

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:frontend/superadmin/performance.dart';
-import 'package:frontend/superadmin/user_list.dart';
-import 'package:frontend/superadmin/notification.dart';
-import 'package:frontend/superadmin/button_nav.dart';
-import 'package:frontend/spv/account.dart';
+import 'package:frontend/pages/spv/working.dart';
+import 'package:frontend/pages/spv/notification.dart';
+import 'package:frontend/pages/spv/account.dart';
+import 'package:frontend/widgets/search.dart';
+import 'package:frontend/pages/spv/button_nav.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,33 +16,30 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.montserratTextTheme(),
       ),
-      home: DashboardSuperAdmin(),
+      home: DashboardSpv(),
     );
   }
 }
 
-class DashboardSuperAdmin extends StatefulWidget {
-  const DashboardSuperAdmin({super.key});
+class DashboardSpv extends StatefulWidget {
+  const DashboardSpv({super.key});
 
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
 }
 
-class _DashboardScreenState extends State<DashboardSuperAdmin> {
+class _DashboardScreenState extends State<DashboardSpv> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
     if (index == 1) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const Performance()),
+        MaterialPageRoute(builder: (context) => const Working()),
       );
-    } if (index == 2) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const UserList()),
-      );
-    }  else if (index == 3) {
+    } else if (index == 2) {
+      showSearchPopup(context);
+    } else if (index == 3) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const NotificationPage()),
@@ -75,7 +72,6 @@ class _DashboardScreenState extends State<DashboardSuperAdmin> {
             ),
           ),
         ),
-        // Main content
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(

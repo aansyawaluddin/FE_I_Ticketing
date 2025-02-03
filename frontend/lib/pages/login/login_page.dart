@@ -1,23 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:frontend/spv/home.dart';
-import 'package:frontend/superadmin/home.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const LoginPage(),
-    );
-  }
-}
+import 'package:frontend/pages/spv/home.dart';
+import 'package:frontend/pages/superadmin/home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

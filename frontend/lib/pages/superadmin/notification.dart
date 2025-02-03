@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/spv/working.dart';
-import 'package:frontend/spv/home.dart';
-import 'package:frontend/spv/account.dart';
-import 'package:frontend/spv/search.dart';
-import 'package:frontend/spv/button_nav.dart';
+import 'package:frontend/pages/superadmin/home.dart';
+import 'package:frontend/pages/superadmin/performance.dart';
+import 'package:frontend/pages/superadmin/account.dart';
+import 'package:frontend/pages/superadmin/button_nav.dart';
+import 'package:frontend/pages/superadmin/user_list.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});
@@ -13,6 +14,7 @@ class NotificationPage extends StatefulWidget {
 }
 
 class _NotificationState extends State<NotificationPage> {
+  String? notification;
   int _selectedIndex = 3;
 
   void _onItemTapped(int index) {
@@ -23,15 +25,18 @@ class _NotificationState extends State<NotificationPage> {
     if (index == 0) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const DashboardSpv()),
+        MaterialPageRoute(builder: (context) => const DashboardSuperAdmin()),
       );
     } else if (index == 1) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const Working()),
+        MaterialPageRoute(builder: (context) => const Performance()),
       );
     } else if (index == 2) {
-      showSearchPopup(context);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const UserList()),
+      );
     } else if (index == 4) {
       Navigator.pushReplacement(
         context,
@@ -54,25 +59,44 @@ class _NotificationState extends State<NotificationPage> {
         automaticallyImplyLeading: false,
         title: Text(
           'Notifikasi',
-          style: const TextStyle(
+          style: GoogleFonts.montserrat(
             color: Colors.black,
+            fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
         ),
+         elevation: 0,
+        actions: [
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              setState(() {
+                notification = value;
+              });
+            },
+            itemBuilder: (context) {
+              return [
+                PopupMenuItem(value: 'Tambah', child: Text('Tambah')),
+                PopupMenuItem(value: 'Edit', child: Text('Edit')),
+              ];
+            },
+             icon: Icon(Icons.more_vert),
+            color: Colors.white, 
+          )
+        ],
         centerTitle: false,
         backgroundColor: const Color(0xFFEAEAEA),
       ),
       backgroundColor: const Color(0xFFEAEAEA),
       body: ListView(
-        padding: EdgeInsets.all(screenWidth * 0.04), 
+        padding: EdgeInsets.all(screenWidth * 0.04),
         children: [
           Container(
             decoration: BoxDecoration(
-              color: Colors.blue[100],
+              color: Color(0xFF8FB7DF),
               borderRadius: BorderRadius.circular(12.0),
-              border: Border.all(color: Colors.blue),
+              border: Border.all(color: Color(0xFF4282C2)),
             ),
-            padding: EdgeInsets.all(screenWidth * 0.04), 
+            padding: EdgeInsets.all(screenWidth * 0.04),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -88,16 +112,16 @@ class _NotificationState extends State<NotificationPage> {
                     children: [
                       Text(
                         'Informasi!',
-                        style: const TextStyle(
+                        style: GoogleFonts.montserrat(
                           fontWeight: FontWeight.bold,
-                          color: Colors.blue,
+                          color: Colors.white,
                           fontSize: 16.0,
                         ),
                       ),
                       SizedBox(height: screenHeight * 0.01),
                       Text(
                         'Jam kerja pegawai berlangsung setiap hari kerja mulai pukul 08.00 pagi hingga 17.00 sore. Mohon pastikan semua keperluan administratif atau komunikasi dilakukan dalam rentang waktu tersebut. Terima kasih.',
-                        style: const TextStyle(fontSize: 14.0),
+                        style: GoogleFonts.montserrat(fontSize: 14.0, color: Colors.white,),
                       ),
                     ],
                   ),
@@ -109,7 +133,7 @@ class _NotificationState extends State<NotificationPage> {
           // Notifikasi Hari Ini
           Text(
             'Hari ini',
-            style: const TextStyle(
+            style: GoogleFonts.montserrat(
               fontWeight: FontWeight.bold,
               fontSize: 16.0,
             ),
@@ -136,7 +160,7 @@ class _NotificationState extends State<NotificationPage> {
           // Notifikasi 1 Hari Lalu
           Text(
             '1 Hari lalu',
-            style: const TextStyle(
+            style: GoogleFonts.montserrat(
               fontWeight: FontWeight.bold,
               fontSize: 16.0,
             ),
@@ -176,7 +200,7 @@ class _NotificationState extends State<NotificationPage> {
     required double screenHeight,
   }) {
     return Card(
-       color: Colors.white,
+      color: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
       ),
@@ -197,7 +221,7 @@ class _NotificationState extends State<NotificationPage> {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
+                    style: GoogleFonts.montserrat(
                       fontWeight: FontWeight.bold,
                       fontSize: 16.0,
                     ),
@@ -205,7 +229,7 @@ class _NotificationState extends State<NotificationPage> {
                   SizedBox(height: screenHeight * 0.01),
                   Text(
                     message,
-                    style: TextStyle(fontSize: 14.0, color: Colors.grey[700]),
+                    style: GoogleFonts.montserrat(fontSize: 14.0, color: Colors.grey[700]),
                   ),
                 ],
               ),

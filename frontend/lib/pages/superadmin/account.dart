@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:frontend/login.dart';
-import 'package:frontend/spv/home.dart';
-import 'package:frontend/spv/working.dart';
-import 'package:frontend/spv/notification.dart';
-import 'package:frontend/spv/search.dart';
-import 'package:frontend/spv/button_nav.dart';
+import 'package:frontend/pages/login/login_page.dart';
+import 'package:frontend/pages/superadmin/home.dart';
+import 'package:frontend/pages/superadmin/performance.dart';
+import 'package:frontend/pages/superadmin/user_list.dart';
+import 'package:frontend/pages/superadmin/notification.dart';
+import 'package:frontend/pages/superadmin/button_nav.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});
@@ -16,11 +16,11 @@ class AccountPage extends StatefulWidget {
 
 class _AccountPageState extends State<AccountPage> {
   int _selectedIndex = 4;
-  String name = 'Reza Maulana';
-  String email = 'rezamaulana@gmail.com';
-  String skpd = 'SKPD';
+  String name = 'Juned';
+  String email = 'Juned@gmail.com';
+  String staff = 'Staff';
   String phone = '+62 82333421454';
-  String username = 'supervisor1';
+  String username = 'superadmin1';
 
   void _onItemTapped(int index) {
     if (index != _selectedIndex) {
@@ -31,15 +31,18 @@ class _AccountPageState extends State<AccountPage> {
       if (index == 0) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const DashboardSpv()),
+          MaterialPageRoute(builder: (context) => const DashboardSuperAdmin()),
         );
       } else if (index == 1) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const Working()),
+          MaterialPageRoute(builder: (context) => const Performance()),
         );
       } else if (index == 2) {
-        showSearchPopup(context);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const UserList()),
+        );
       } else if (index == 3) {
         Navigator.pushReplacement(
           context,
@@ -112,7 +115,7 @@ class _AccountPageState extends State<AccountPage> {
               ),
             ),
             Text(
-              'Supervisor 1',
+              'Super Admin 1',
               style: GoogleFonts.montserrat(
                 color: Colors.black,
                 fontSize: 14,
@@ -129,7 +132,11 @@ class _AccountPageState extends State<AccountPage> {
                 email = newValue;
               });
             }),
-            _buildEditableCard(skpd, null, isEditable: false),
+            _buildEditableCard(staff, (newValue) {
+              setState(() {
+                staff = newValue;
+              });
+            }),
             _buildEditableCard(phone, (newValue) {
               setState(() {
                 phone = newValue;

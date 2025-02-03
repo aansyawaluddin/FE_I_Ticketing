@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:frontend/superadmin/home.dart';
-import 'package:frontend/superadmin/worklist.dart';
-import 'package:frontend/superadmin/user_list.dart';
-import 'package:frontend/superadmin/notification.dart';
-import 'package:frontend/superadmin/button_nav.dart';
-
-import 'package:frontend/spv/account.dart';
+import 'package:frontend/pages/superadmin/home.dart';
+import 'package:frontend/pages/superadmin/worklist.dart';
+import 'package:frontend/pages/superadmin/user_list.dart';
+import 'package:frontend/pages/superadmin/notification.dart';
+import 'package:frontend/pages/superadmin/button_nav.dart';
+import 'package:frontend/pages/superadmin/account.dart';
 
 class Performance extends StatefulWidget {
   const Performance({super.key});
