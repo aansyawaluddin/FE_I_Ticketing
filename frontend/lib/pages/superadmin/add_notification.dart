@@ -16,8 +16,11 @@ class _AddNotification extends State<AddNotification> {
 
   List<String> notificationTypes = ["Informasi!", "Laporan Ticketing", "Notif"];
 
+  void _showCreateNotificationPopup() {
+    showPopupCreateNotification(context);
+  }
+
   OverlayEntry? overlayEntry;
-  final LayerLink _layerLink = LayerLink();
   final GlobalKey _dropdownKey = GlobalKey();
 
   void showDropdown() {
@@ -29,22 +32,21 @@ class _AddNotification extends State<AddNotification> {
 
     overlayEntry = OverlayEntry(
       builder: (context) => Positioned(
-        width: size.width, 
+        width: size.width,
         left: offset.dx,
         top: offset.dy + size.height + 5,
         child: Material(
           color: Colors.transparent,
           child: Container(
             decoration: BoxDecoration(
-              color: Color(0xFFEAEAEA),
-              borderRadius: BorderRadius.circular(
-                  16),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.2),
                   blurRadius: 8,
                   spreadRadius: 2,
-                  offset: Offset(0, 4), 
+                  offset: Offset(0, 4),
                 )
               ],
             ),
@@ -52,25 +54,24 @@ class _AddNotification extends State<AddNotification> {
               mainAxisSize: MainAxisSize.min,
               children: notificationTypes.map((type) {
                 bool isSelected = type == selectedNotificationType;
-                return Container(
-                  decoration: BoxDecoration(
-                    color: isSelected
-                        ? Color(0xFFCECECA)
-                        : Color(0xFFEAEAEA), 
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: ListTile(
-                    title: Text(
+                return InkWell(
+                  onTap: () {
+                    setState(() {
+                      selectedNotificationType = type;
+                    });
+                    hideDropdown();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+                    decoration: BoxDecoration(
+                      color: isSelected ? Color(0xFFCECECA) : Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
                       type,
                       style: GoogleFonts.montserrat(
                           color: Colors.black, fontWeight: FontWeight.w500),
                     ),
-                    onTap: () {
-                      setState(() {
-                        selectedNotificationType = type;
-                      });
-                      hideDropdown();
-                    },
                   ),
                 );
               }).toList(),
@@ -93,23 +94,27 @@ class _AddNotification extends State<AddNotification> {
     super.initState();
     messageFocusNode.addListener(() {
       if (messageFocusNode.hasFocus) {
-        hideDropdown(); 
+        hideDropdown();
       }
     });
   }
 
   @override
   void dispose() {
-    messageFocusNode.dispose(); 
+    messageFocusNode.dispose();
+    messageController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TopBar(backButton: true,content:
-      Padding(
-          padding: EdgeInsets.only(left: 0), child: const Text("Notification"))
+      appBar: TopBar(
+        backButton: true,
+        content: Padding(
+          padding: EdgeInsets.only(left: 0),
+          child: const Text("Notification"),
+        ),
       ),
       backgroundColor: const Color(0xFFEAEAEA),
       body: SingleChildScrollView(
@@ -124,79 +129,60 @@ class _AddNotification extends State<AddNotification> {
                       color: Colors.black,
                       fontWeight: FontWeight.w600)),
               SizedBox(height: 13),
-
-              CompositedTransformTarget(
-                link: _layerLink,
-                child: GestureDetector(
-                  key: _dropdownKey,
-                  onTap: () {
-                    if (overlayEntry == null) {
-                      showDropdown();
-                    } else {
-                      hideDropdown();
-                    }
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    decoration: BoxDecoration(
-                      color: Color(0xFFEAEAEA), 
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.grey),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          selectedNotificationType ?? "Jenis Notifikasi",
-                          style: GoogleFonts.montserrat(
-                            color: selectedNotificationType == null
-                                ? Colors.grey
-                                : Colors.black,
-                            fontWeight: FontWeight.w600,
-                          ),
+              GestureDetector(
+                key: _dropdownKey,
+                onTap: () {
+                  overlayEntry == null ? showDropdown() : hideDropdown();
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.grey),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        selectedNotificationType ?? "Jenis Notifikasi",
+                        style: GoogleFonts.montserrat(
+                          color: selectedNotificationType == null
+                              ? Colors.grey
+                              : Colors.black,
+                          fontWeight: FontWeight.w600,
                         ),
-                        Icon(Icons.arrow_drop_down),
-                      ],
-                    ),
+                      ),
+                      Icon(Icons.arrow_drop_down),
+                    ],
                   ),
                 ),
               ),
-
               SizedBox(height: 20),
-
               TextField(
                 controller: messageController,
-                focusNode: messageFocusNode, 
-                maxLines: 12,
+                focusNode: messageFocusNode,
+                maxLines: 5,
                 decoration: InputDecoration(
                   hintText: "Isi",
                   hintStyle: GoogleFonts.montserrat(
                       color: Colors.grey, fontWeight: FontWeight.w600),
                   filled: true,
-                  fillColor: Color(0xFFEAEAEA), 
+                  fillColor: Colors.white,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                onTap: () {
-                  hideDropdown();
-                },
               ),
-
               SizedBox(height: 30),
-
               SizedBox(
                 width: double.infinity,
-                height: 55,
+                height: 50,
                 child: ElevatedButton(
                   onPressed: () {
                     if (selectedNotificationType != null &&
                         messageController.text.isNotEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                            content: Text("Notifikasi berhasil ditambahkan",
-                                style: GoogleFonts.montserrat())),
-                      );
+                      _showCreateNotificationPopup();
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -211,7 +197,6 @@ class _AddNotification extends State<AddNotification> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 24),
                   ),
                   child: Text(
                     "Tambahkan Notifikasi",
@@ -229,4 +214,37 @@ class _AddNotification extends State<AddNotification> {
       ),
     );
   }
+}
+
+void showPopupCreateNotification(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const SizedBox(height: 16),
+            Text(
+              "Notifikasi Berhasil Ditambahkan",
+              style: GoogleFonts.montserrat(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 30),
+            Image.asset(
+              'assets/icons/verifikasi.png',
+              width: 100,
+              height: 100,
+            ),
+          ],
+        ),
+      );
+    },
+  );
 }
