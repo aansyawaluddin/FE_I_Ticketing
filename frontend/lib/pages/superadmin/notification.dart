@@ -4,6 +4,7 @@ import 'package:frontend/pages/superadmin/performance.dart';
 import 'package:frontend/pages/superadmin/account.dart';
 import 'package:frontend/pages/superadmin/button_nav.dart';
 import 'package:frontend/pages/superadmin/user_list.dart';
+import 'package:frontend/pages/superadmin/add_notification.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NotificationPage extends StatefulWidget {
@@ -14,7 +15,7 @@ class NotificationPage extends StatefulWidget {
 }
 
 class _NotificationState extends State<NotificationPage> {
-  String? notification;
+  bool _isEditMode = false;
   int _selectedIndex = 3;
 
   void _onItemTapped(int index) {
@@ -56,7 +57,17 @@ class _NotificationState extends State<NotificationPage> {
 
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: _isEditMode,
+        leading: _isEditMode
+            ? IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  setState(() {
+                    _isEditMode = false;
+                  });
+                },
+              )
+            : null,
         title: Text(
           'Notifikasi',
           style: GoogleFonts.montserrat(
@@ -65,13 +76,21 @@ class _NotificationState extends State<NotificationPage> {
             fontSize: 20,
           ),
         ),
-         elevation: 0,
+        elevation: 0,
         actions: [
           PopupMenuButton<String>(
             onSelected: (value) {
-              setState(() {
-                notification = value;
-              });
+              if (value == 'Edit') {
+                setState(() {
+                  _isEditMode = true;
+                });
+              } else if (value == 'Tambah') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const AddNotification()),
+                );
+              }
             },
             itemBuilder: (context) {
               return [
@@ -79,8 +98,8 @@ class _NotificationState extends State<NotificationPage> {
                 PopupMenuItem(value: 'Edit', child: Text('Edit')),
               ];
             },
-             icon: Icon(Icons.more_vert),
-            color: Colors.white, 
+            icon: Icon(Icons.more_vert),
+            color: Colors.white,
           )
         ],
         centerTitle: false,
@@ -121,7 +140,10 @@ class _NotificationState extends State<NotificationPage> {
                       SizedBox(height: screenHeight * 0.01),
                       Text(
                         'Jam kerja pegawai berlangsung setiap hari kerja mulai pukul 08.00 pagi hingga 17.00 sore. Mohon pastikan semua keperluan administratif atau komunikasi dilakukan dalam rentang waktu tersebut. Terima kasih.',
-                        style: GoogleFonts.montserrat(fontSize: 14.0, color: Colors.white,),
+                        style: GoogleFonts.montserrat(
+                          fontSize: 14.0,
+                          color: Colors.white,
+                        ),
                       ),
                     ],
                   ),
@@ -204,38 +226,55 @@ class _NotificationState extends State<NotificationPage> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
       ),
-      child: Padding(
-        padding: EdgeInsets.all(screenWidth * 0.04),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(
-              icon,
-              color: Colors.blue,
-              size: screenWidth * 0.06,
+      child: Stack(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(screenWidth * 0.04),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  icon,
+                  color: Colors.blue,
+                  size: screenWidth * 0.06,
+                ),
+                SizedBox(width: screenWidth * 0.03),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: GoogleFonts.montserrat(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                      SizedBox(height: screenHeight * 0.01),
+                      Text(
+                        message,
+                        style: GoogleFonts.montserrat(
+                            fontSize: 14.0, color: Colors.grey[700]),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-            SizedBox(width: screenWidth * 0.03),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: GoogleFonts.montserrat(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
-                    ),
-                  ),
-                  SizedBox(height: screenHeight * 0.01),
-                  Text(
-                    message,
-                    style: GoogleFonts.montserrat(fontSize: 14.0, color: Colors.grey[700]),
-                  ),
-                ],
+          ),
+          if (_isEditMode)
+            Positioned(
+              top: 8,
+              right: 8,
+              child: Image.asset(
+                'assets/icons/edit.png',
+                width: 24,
+                height: 24,
               ),
+              // onPressed: () {
+              // },
             ),
-          ],
-        ),
+        ],
       ),
     );
   }
